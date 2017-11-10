@@ -1,0 +1,36 @@
+<?php
+require_once('vendor/autoload.php');
+// See your keys here https://dashboard.stripe.com/account/apikeys
+\Stripe\Stripe::setApiKey("sk_test_P9XQtrrfGYU9mF8h6C47bgUp");
+
+// Token is created using Stripe.js or Checkout!
+// Get the payment token submitted by the form:
+$token = $_POST['stripeToken'];
+$customer->id = $_POST['customerID'];
+
+
+if($customer->id == ""){
+
+// Create a Customer:
+$customer = \Stripe\Customer::create(array(
+"email" => "paying.user@example.com",
+"source" => $token,
+));
+
+// Charge the Customer instead of the card:
+$charge = \Stripe\Charge::create(array(
+"amount" => 1000,
+"currency" => "usd",
+"customer" => $customer->id
+));
+
+}
+else{
+
+$charge = \Stripe\Charge::create(array(
+"amount" => 1000,
+"currency" => "usd",
+"customer" => $customer->id
+));
+
+}
