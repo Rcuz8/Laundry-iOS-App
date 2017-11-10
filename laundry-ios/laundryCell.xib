@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<device id="retina4_7" orientation="portrait">
+<adaptation id="fullscreen"/>
+</device>
+<dependencies>
+<deployment identifier="iOS"/>
+<plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+<capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+<capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+</dependencies>
+<objects>
+<placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+<placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+<tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="340" id="KGk-i7-Jjw" customClass="laundryCell" customModule="laundry_ios" customModuleProvider="target">
+<rect key="frame" x="0.0" y="0.0" width="387" height="340"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+<tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+<rect key="frame" x="0.0" y="0.0" width="387" height="339.5"/>
+<autoresizingMask key="autoresizingMask"/>
+<subviews>
+<navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AW5-e2-rlF">
+<rect key="frame" x="0.0" y="0.0" width="387" height="44"/>
+<constraints>
+<constraint firstAttribute="height" constant="44" id="m3c-A0-bIp"/>
+</constraints>
+<items>
+<navigationItem title="Laundry" id="3GP-cV-078">
+<barButtonItem key="leftBarButtonItem" title="Back" id="gnE-QJ-BU4">
+<connections>
+<action selector="backButtonPressed:" destination="KGk-i7-Jjw" id="Eqa-m8-3AO"/>
+</connections>
+</barButtonItem>
+</navigationItem>
+</items>
+</navigationBar>
+<label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrJ-y9-5JU">
+<rect key="frame" x="14" y="67" width="359" height="193"/>
+<color key="backgroundColor" red="0.91764705882352937" green="0.92941176470588238" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+<constraints>
+<constraint firstAttribute="height" constant="193" id="2yz-aI-FJe"/>
+</constraints>
+<fontDescription key="fontDescription" type="system" pointSize="17"/>
+<nil key="textColor"/>
+<nil key="highlightedColor"/>
+</label>
+<label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo5-0S-Juu">
+<rect key="frame" x="54" y="94" width="278" height="138"/>
+<color key="backgroundColor" red="0.91764705882352937" green="0.92941176470588238" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+<constraints>
+<constraint firstAttribute="height" constant="138" id="4bN-xj-SH4"/>
+</constraints>
+<fontDescription key="fontDescription" type="system" pointSize="17"/>
+<color key="textColor" red="0.081946855720000003" green="0.1671609761" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+<nil key="highlightedColor"/>
+</label>
+<slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="KTs-SK-4Rl">
+<rect key="frame" x="98" y="183" width="190" height="31"/>
+<constraints>
+<constraint firstAttribute="height" constant="30" id="R0W-DW-nOX"/>
+</constraints>
+<connections>
+<action selector="valueChangedSlider:" destination="KGk-i7-Jjw" eventType="valueChanged" id="hOK-RX-MWk"/>
+</connections>
+</slider>
+<label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4l-7x-GfG">
+<rect key="frame" x="218" y="138" width="48" height="21"/>
+<constraints>
+<constraint firstAttribute="width" constant="48" id="40b-yV-7ul"/>
+<constraint firstAttribute="height" constant="21" id="pbZ-t1-mge"/>
+</constraints>
+<fontDescription key="fontDescription" type="system" pointSize="27"/>
+<nil key="textColor"/>
+<nil key="highlightedColor"/>
+</label>
+<label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bags" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oc4-63-JIk">
+<rect key="frame" x="149" y="132" width="61" height="33"/>
+<fontDescription key="fontDescription" type="system" pointSize="27"/>
+<nil key="textColor"/>
+<nil key="highlightedColor"/>
+</label>
+<button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9A0-dC-tZB">
+<rect key="frame" x="132" y="279" width="123" height="35"/>
+<color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+<constraints>
+<constraint firstAttribute="width" constant="123" id="BLz-Wp-SC0"/>
+<constraint firstAttribute="height" constant="35" id="oL2-g5-eIy"/>
+</constraints>
+<fontDescription key="fontDescription" type="system" pointSize="18"/>
+<state key="normal" title="Next">
+<color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+</state>
+<connections>
+<action selector="nextButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fdW-sr-vFQ"/>
+</connections>
+</button>
+</subviews>
+<color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+<constraints>
+<constraint firstItem="KTs-SK-4Rl" firstAttribute="top" secondItem="oc4-63-JIk" secondAttribute="bottom" constant="18" id="04E-4A-HlU"/>
+<constraint firstItem="mo5-0S-Juu" firstAttribute="top" secondItem="AW5-e2-rlF" secondAttribute="bottom" constant="50" id="1mN-dA-CV4"/>
+<constraint firstItem="Z4l-7x-GfG" firstAttribute="top" secondItem="AW5-e2-rlF" secondAttribute="bottom" constant="94" id="78E-UK-944"/>
+<constraint firstItem="mo5-0S-Juu" firstAttribute="top" secondItem="oc4-63-JIk" secondAttribute="bottom" constant="-71" id="79O-6S-0Fg"/>
+<constraint firstAttribute="trailingMargin" secondItem="KTs-SK-4Rl" secondAttribute="trailing" constant="93" id="7Ox-5W-Mk9"/>
+<constraint firstAttribute="trailingMargin" secondItem="Z4l-7x-GfG" secondAttribute="trailing" constant="113" id="BDK-BC-McR"/>
+<constraint firstItem="mo5-0S-Juu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="46" id="Eq5-9L-awO"/>
+<constraint firstItem="mrJ-y9-5JU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="Fqh-Pb-r1Y"/>
+<constraint firstItem="Z4l-7x-GfG" firstAttribute="leading" secondItem="oc4-63-JIk" secondAttribute="trailing" constant="8" id="Hog-ty-B5a"/>
+<constraint firstAttribute="trailing" secondItem="AW5-e2-rlF" secondAttribute="trailing" id="KsW-LX-Uu7"/>
+<constraint firstItem="9A0-dC-tZB" firstAttribute="top" secondItem="mrJ-y9-5JU" secondAttribute="bottom" constant="19" id="O1t-7E-EZJ"/>
+<constraint firstItem="mrJ-y9-5JU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="OJu-00-fgN"/>
+<constraint firstItem="mrJ-y9-5JU" firstAttribute="top" secondItem="AW5-e2-rlF" secondAttribute="bottom" constant="23" id="V8d-Uq-lwo"/>
+<constraint firstItem="9A0-dC-tZB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="XgS-S9-lJA"/>
+<constraint firstItem="mrJ-y9-5JU" firstAttribute="top" secondItem="AW5-e2-rlF" secondAttribute="bottom" constant="23" id="ZWd-4c-HwG"/>
+<constraint firstAttribute="trailingMargin" secondItem="mrJ-y9-5JU" secondAttribute="trailing" constant="6" id="iAS-3c-BTt"/>
+<constraint firstItem="AW5-e2-rlF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kC3-95-5qk"/>
+<constraint firstItem="KTs-SK-4Rl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="92" id="lPG-lV-8he"/>
+<constraint firstItem="AW5-e2-rlF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lf4-H2-V1V"/>
+<constraint firstAttribute="trailingMargin" secondItem="mo5-0S-Juu" secondAttribute="trailing" constant="47" id="nps-aE-4Ka"/>
+<constraint firstAttribute="trailingMargin" secondItem="mrJ-y9-5JU" secondAttribute="trailing" constant="6" id="t77-qG-Zcf"/>
+</constraints>
+</tableViewCellContentView>
+<connections>
+<outlet property="bagSlider" destination="KTs-SK-4Rl" id="3hu-A4-lqd"/>
+<outlet property="bagSliderValue" destination="Z4l-7x-GfG" id="uCY-PJ-G6t"/>
+<outlet property="bigBackgroundLabel" destination="mrJ-y9-5JU" id="ds3-qQ-CWE"/>
+<outlet property="nextButton" destination="9A0-dC-tZB" id="AY4-Sq-NY6"/>
+<outlet property="smallBackgroundLabel" destination="mo5-0S-Juu" id="fwa-bQ-KAa"/>
+</connections>
+<point key="canvasLocation" x="79.5" y="-94"/>
+</tableViewCell>
+</objects>
+</document>
