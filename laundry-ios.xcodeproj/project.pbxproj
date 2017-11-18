@@ -66,7 +66,7 @@
 		94AEBB921F3A5E4400AC63B4 /* OrderHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEBB911F3A5E4400AC63B4 /* OrderHistoryCell.swift */; };
 		94B1B0BC1F13B8D200E5AD58 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1B0BB1F13B8D200E5AD58 /* UserProfileViewController.swift */; };
 		94BBC2A01EFF10A80066FF82 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BBC29F1EFF10A80066FF82 /* LoadingViewController.swift */; };
-		94BBC2A41EFF5BA40066FF82 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94BBC2A31EFF5BA40066FF82 /* info.plist */; };
+		94BBC2A41EFF5BA40066FF82 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94BBC2A31EFF5BA40066FF82 /* Info.plist */; };
 		94D0A6C71F2D7523003171BA /* ClientLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0A6C61F2D7523003171BA /* ClientLoginViewController.swift */; };
 		94D901681F1353C2001987B1 /* GenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D901671F1353C2001987B1 /* GenericCell.swift */; };
 		94F85C0A1F05826400E4B8A0 /* EmailAndPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F85C091F05826400E4B8A0 /* EmailAndPasswordViewController.swift */; };
@@ -173,7 +173,7 @@
 		94AEBB911F3A5E4400AC63B4 /* OrderHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryCell.swift; sourceTree = "<group>"; };
 		94B1B0BB1F13B8D200E5AD58 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		94BBC29F1EFF10A80066FF82 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		94BBC2A31EFF5BA40066FF82 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		94BBC2A31EFF5BA40066FF82 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94D0A6C61F2D7523003171BA /* ClientLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientLoginViewController.swift; sourceTree = "<group>"; };
 		94D901671F1353C2001987B1 /* GenericCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCell.swift; sourceTree = "<group>"; };
 		94F85C091F05826400E4B8A0 /* EmailAndPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordViewController.swift; sourceTree = "<group>"; };
@@ -346,7 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				9470ACAB1F4E653E00BCF979 /* CosmosDistrib.swift */,
-				94BBC2A31EFF5BA40066FF82 /* info.plist */,
+				94BBC2A31EFF5BA40066FF82 /* Info.plist */,
 				947E14C91FB621D200CD4443 /* GoogleService-Info.plist */,
 				F4D19E8D1ECE6E9F00950574 /* bridger.h */,
 				F6B134251EB95BCF00FFB407 /* Assets.xcassets */,
@@ -611,7 +611,7 @@
 				9435B09D1F379319005A199D /* Ordering.storyboard in Resources */,
 				9454F2F71F47D22100AB388B /* orderSummaryCell.xib in Resources */,
 				F498CEC21ED1614F003516A8 /* SampleTimetable_1-2.json in Resources */,
-				94BBC2A41EFF5BA40066FF82 /* info.plist in Resources */,
+				94BBC2A41EFF5BA40066FF82 /* Info.plist in Resources */,
 				9454F3171F47DE0E00AB388B /* dryCleaningCell.xib in Resources */,
 				9454F3011F47D29100AB388B /* paymentCell.xib in Resources */,
 				9454F30F1F47D37600AB388B /* NestedTableViewCell.xib in Resources */,
@@ -917,7 +917,7 @@
 				INFOPLIST_FILE = "laundry-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lavologistics.lavo;
 				PRODUCT_NAME = "laundry-ios";
 				SWIFT_OBJC_BRIDGING_HEADER = "laundry-ios/bridger.h";
 				SWIFT_VERSION = 3.0;
@@ -939,7 +939,7 @@
 				INFOPLIST_FILE = "laundry-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lavologistics.lavo;
 				PRODUCT_NAME = "laundry-ios";
 				SWIFT_OBJC_BRIDGING_HEADER = "laundry-ios/bridger.h";
 				SWIFT_VERSION = 3.0;
