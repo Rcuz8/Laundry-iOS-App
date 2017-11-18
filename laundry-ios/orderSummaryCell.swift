@@ -58,50 +58,31 @@ class orderSummaryCell: UITableViewCell  {
     
     @IBAction func termsOfOrderingCheckBox(_ sender: Any) {
         
-        //hehehehehe
-        
         if(termsCheckBox.isSelected)
         {
             termsCheckBox.isSelected = false
-            
-            
             termsCheckBox.setBackgroundImage(UIImage(named:"ic_check_box_outline_blank_black_24dp_2x" ) , for: .normal)
-            
-            
+            UserDefaults.standard.set(false, forKey: "checkedTermsOfOrdering")
         }
         else  if(!termsCheckBox.isSelected){
-            
             termsCheckBox.isSelected = true
-            
-            
             termsCheckBox.setBackgroundImage(UIImage(named: "ic_check_box"), for: .selected)
-            
-            
-            UserDefaults.standard.set("true123", forKey: "laundryCheckBox")
+            UserDefaults.standard.set(true, forKey: "checkedTermsOfOrdering")
             
         }
         
     }
     
     @IBAction func yourOrderBackPressed(_ sender: Any) {
-        
         delegate?.orderSummaryBack()
-        
     }
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
-        
-        //        infoView.layer.cornerRadius = 15
+
         checkoutButton.layer.cornerRadius = 10
         
         addressLabel.layer.cornerRadius = 15
-        
-        
         termsCheckBox.setBackgroundImage(UIImage(named: "ic_check_box_outline_blank_black_24dp_2x"), for: .normal)
         termsCheckBox.isSelected = false
         
@@ -109,7 +90,6 @@ class orderSummaryCell: UITableViewCell  {
         
         termsView.layer.borderWidth = 2.0
         termsView.layer.borderColor = UIColor.lavoSlightlyDarkBlue.cgColor
-        
         
     }
     
@@ -119,8 +99,6 @@ class orderSummaryCell: UITableViewCell  {
         } else {
             SCLAlertView().showError("Unaccepted Terms", subTitle: "You must accept the Terms of Ordering before proceeding")
         }
-
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

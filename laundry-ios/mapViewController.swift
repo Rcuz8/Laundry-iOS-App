@@ -182,9 +182,9 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         super.viewDidLoad()
         
         //type of order cell
-        SavedStates.set(" ", forKey: "StandardOrExpress")
+        SavedStates.set(nil, forKey: "StandardOrExpress")
         
-        SavedStates.set(" ", forKey: "laundryOrDrycleaning")
+        SavedStates.set(nil, forKey: "isLaundry")
         
         
         print("OJOJOJOJOK")
@@ -400,52 +400,36 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let defaults = UserDefaults.standard
+        
         if(arrayOfCellData[indexPath.row].cell == 1){
             
             let cell = Bundle.main.loadNibNamed("orderType", owner: self, options: nil)?.first as! orderType
             
             cell.delegate = self
             
-            
-            
-            if(UserDefaults.standard.object(forKey: "StandardOrExpress") as! String! == "Standard"){
-                print("HI")
-                cell.standardButton.layer.borderWidth = 2.0
-                cell.standardButton.layer.borderColor = UIColor.black.cgColor
-                
-            }
-                
-            else if(UserDefaults.standard.object(forKey: "StandardOrExpress") as! String! == "Express"){
-                
-                
-                
-                cell.expressButton.layer.borderWidth = 2.0
-                cell.expressButton.layer.borderColor = UIColor.black.cgColor
-            }
-            
-            if(UserDefaults.standard.object(forKey: "laundryOrDrycleaning") as! String! == "laundry"){
-                
-                cell.laundryCheckBox.isSelected = true
-                
-                cell.laundryCheckBox.setBackgroundImage(UIImage(named: "ic_check_box"), for: .selected)
-                
-            }
-                //
-            else  if(UserDefaults.standard.object(forKey: "laundryOrDrycleaning") as! String! == "dryCleaning"){
-                
-                
-                cell.dryCleaningCheckBox.isSelected = true
-                
-                
-                
-                
-                cell.dryCleaningCheckBox.setBackgroundImage(UIImage(named: "ic_check_box"), for: .selected)
+            if let express = defaults.object(forKey: "isExpress") as? Bool {
+                if express {
+                    cell.expressButton.layer.borderWidth = 2.0
+                    cell.expressButton.layer.borderColor = UIColor.black.cgColor
+                } else {
+                    cell.standardButton.layer.borderWidth = 2.0
+                    cell.standardButton.layer.borderColor = UIColor.black.cgColor
+                }
                 
             }
             
-            
-            
-            
+            if let laundry = defaults.object(forKey: "isLaundry") as? Bool {
+                if laundry {
+                    cell.laundryCheckBox.isSelected = true
+                    cell.laundryCheckBox.setBackgroundImage(UIImage(named: "ic_check_box"), for: .selected)
+                } else {
+                    cell.dryCleaningCheckBox.isSelected = true
+                    cell.dryCleaningCheckBox.setBackgroundImage(UIImage(named: "ic_check_box"), for: .selected)
+                }
+
+            }
+ 
             return cell
             
         }
@@ -456,60 +440,42 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
             cell.delegate = self
             
+            if let numShirts = defaults.object(forKey: "numShirts"), let numPants = defaults.object(forKey: "numPants"), let numSuits = defaults.object(forKey: "numSuits"), let numJackets = defaults.object(forKey: "numJackets") {
+                // set sliders
+                cell.shirtSlider.value = numShirts as! Float; cell.pantSlider.value = numPants as! Float;cell.suitSlider.value = numSuits as! Float; cell.jacketSlider.value = numJackets as! Float;
+                // set text
+                cell.shirtSliderValue.text = "\(numShirts)"
+                cell.pantSliderValue.text = "\(numPants)"
+                cell.suitSliderValue.text = "\(numSuits)"
+                cell.jacketSliderValue.text = "\(numJackets)"
+            }
             
-            
-            cell.shirtSlider.value = UserDefaults.standard.object(forKey: "numberOfShirts") as! Float
-            cell.shirtSliderValue.text = String(Int(cell.shirtSlider.value))
-            
-            cell.pantSlider.value = UserDefaults.standard.object(forKey: "numberOfPants") as! Float
-            cell.pantSliderValue.text = String(Int(cell.pantSlider.value))
-            
-            cell.suitSlider.value = UserDefaults.standard.object(forKey: "numberOfSuits") as! Float
-            cell.suitSliderValue.text = String(Int(cell.suitSlider.value))
-            
-            cell.jacketSlider.value = UserDefaults.standard.object(forKey: "numberOfJackets") as! Float
-            cell.jacketSliderValue.text = String(Int(cell.jacketSlider.value))
-            
-            
-            if(UserDefaults.standard.object(forKey: "genderOptions") as! Int! == 1){
+            if(defaults.object(forKey: "genderOptions") as! Int! == 1){
                 cell.optionsSegment.selectedSegmentIndex = 0
             }
-            else if(UserDefaults.standard.object(forKey: "genderOptions") as! Int! == 2){
+            else if(defaults.object(forKey: "genderOptions") as! Int! == 2){
                 cell.optionsSegment.selectedSegmentIndex = 1
             }
-            else if(UserDefaults.standard.object(forKey: "genderOptions") as! Int! == 3){
+            else if(defaults.object(forKey: "genderOptions") as! Int! == 3){
                 cell.optionsSegment.selectedSegmentIndex = 2
             }
-            
-            
             
             
             return cell
         }
         else if(arrayOfCellData[indexPath.row].cell == 3){
-            
             let cell = Bundle.main.loadNibNamed("laundryCell", owner: self, options: nil)?.first as! laundryCell
-            
             cell.delegate = self
-            cell.bagSlider.value = UserDefaults.standard.object(forKey: "numberOfBags") as! Float
-            
-            cell.bagSliderValue.text = String(Int(cell.bagSlider.value))
-            
-            
+            if let bagCount = defaults.object(forKey: "bagCount") as? Int {
+                cell.bagSlider.value = Float(bagCount)
+                cell.bagSliderValue.text = "\(bagCount)"
+            }
             return cell
             
         }
         else if(arrayOfCellData[indexPath.row].cell == 4){
-            
             let cell = Bundle.main.loadNibNamed("specialPreferencesCell", owner: self, options: nil)?.first as! specialPreferencesCell
-            
-            
-            // cell.lol = "Hello World"
-            
             cell.delegate = self
-            
-            
-            
             return cell
         }
         else if(arrayOfCellData[indexPath.row].cell == 5){
@@ -517,33 +483,23 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             let cell = Bundle.main.loadNibNamed("orderSummaryCell", owner: self, options: nil)?.first as! orderSummaryCell
             
             cell.delegate = self
-            //
-            cell.numberOfShirts.text = String(UserDefaults.standard.object(forKey: "numberOfShirts") as! Int!)
-            
-            cell.numberOfPants.text = String(UserDefaults.standard.object(forKey: "numberOfPants") as! Int!)
-            
-            cell.numberOfSuits.text = String(UserDefaults.standard.object(forKey: "numberOfSuits") as! Int!)
-            
-            cell.numberOfJackets.text = String(UserDefaults.standard.object(forKey: "numberOfJackets") as! Int!)
-            
-            cell.addressLabel.text = UserDefaults.standard.object(forKey: "Address") as! String!
-            
-            
-            
-            cell.addressLabel.layer.cornerRadius = 15
-            
-            if(UserDefaults.standard.object(forKey: "termsCheckBox") as! String == "Checked"){
-                
-                cell.termsCheckBox.isSelected = true
-                //  cell.termsCheckBox.setImage(UIImage(named:"ic_check_box"), for: .selected)
-                
-                
+            if let numShirts = defaults.object(forKey: "numShirts"), let numPants = defaults.object(forKey: "numPants"), let numSuits = defaults.object(forKey: "numSuits"), let numJackets = defaults.object(forKey: "numJackets") {
+                cell.numberOfPants.text = "\(numPants)"
+                cell.numberOfSuits.text = "\(numSuits)"
+                cell.numberOfShirts.text = "\(numShirts)"
+                cell.numberOfJackets.text = "\(numJackets)"
             }
-                
-            else{
-                cell.termsCheckBox.isSelected = false
-                
-                //cell.termsCheckBox.setBackgroundImage(UIImage(named:"ic_check_box_outline_blank_black_24dp_2x"), for: .normal)
+            if let address = defaults.object(forKey: "address") as? String {
+                cell.addressLabel.text = address
+            }
+
+            cell.addressLabel.layer.cornerRadius = 15
+            if let checkedTerms = defaults.object(forKey: "checkedTermsOfOrdering") as? Bool {
+                if checkedTerms {
+                    cell.termsCheckBox.isSelected = true
+                } else {
+                    cell.termsCheckBox.isSelected = false
+                }
             }
             
             return cell
@@ -557,12 +513,10 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
             cell.delegate = self
             
-            if(UserDefaults.standard.object(forKey: "Instant") as! String! == "Selected"){
+            if defaults.object(forKey: "Instant") as! String! == "Selected" {
                 
                 cell.instantBtn.layer.borderWidth = 2.0
                 cell.instantBtn.layer.borderColor = UIColor.black.cgColor
-                
-                
                 
             }
             
@@ -570,14 +524,10 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
         }
             
-            
         else{
             
-            
             let cell = Bundle.main.loadNibNamed("paymentCell", owner: self, options: nil)?.first as! paymentCell
-            
-            // cell.lol = "Hello World"
-            
+
             cell.delegate = self
             
             return cell
@@ -590,7 +540,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return arrayOfCellData[indexPath.row].height
-        
         
     }
     
@@ -728,48 +677,23 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    
-    
-    
-    func cellButtonTapped(cell: orderType) {
-        
-        
-        
-        
-        
+    func cellButtonTapped(cell: orderType) { // Order Type Chosen
         UIView.animate(withDuration: 0.3) {
-            
-            
-            
-            
-            if(UserDefaults.standard.object(forKey: "laundryOrDrycleaning") as! String! == "laundry"){
-                
-                
-                
-                
-                self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-350, width: self.view.frame.width-20, height: 340)
-                self.view.addSubview(self.tableView)
-                
-                self.tableView.scrollRectToVisible( CGRect(x: 0, y: self.arrayOfCellData[1].yCoor+self.arrayOfCellData[1].height, width: self.view.frame.width, height: 340), animated: true)
-                
-                IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
-                
-                
-                
+            if let isLaundry = UserDefaults.standard.object(forKey: "isLaundry") as? Bool {
+                if isLaundry {
+                    self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-350, width: self.view.frame.width-20, height: 340)
+                    self.view.addSubview(self.tableView)
+                    
+                    self.tableView.scrollRectToVisible( CGRect(x: 0, y: self.arrayOfCellData[1].yCoor+self.arrayOfCellData[1].height, width: self.view.frame.width, height: 340), animated: true)
+                    
+                    IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
+                } else {
+                    self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-374, width: self.view.frame.width-20, height: 364)
+                    // self.view.addSubview(self.tableView)
+                    
+                    self.tableView.scrollRectToVisible( CGRect(x: 0, y:self.arrayOfCellData[0].yCoor+self.arrayOfCellData[0].height, width: self.view.frame.width, height: 364), animated: true)
+                }
             }
-                
-            else if(UserDefaults.standard.object(forKey: "laundryOrDrycleaning") as! String! == "dryCleaning"){
-                
-                
-                self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-374, width: self.view.frame.width-20, height: 364)
-                // self.view.addSubview(self.tableView)
-                
-                self.tableView.scrollRectToVisible( CGRect(x: 0, y:self.arrayOfCellData[0].yCoor+self.arrayOfCellData[0].height, width: self.view.frame.width, height: 364), animated: true)
-                
-                
-                
-            }
-            
         }
     }
     
@@ -919,7 +843,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         var isExpress : Bool = UserDefaults.standard.object(forKey: "StandardOrExpress") as! String == "Express"
         
-        var isLaundry : Bool = UserDefaults.standard.object(forKey: "laundryOrDrycleaning") as! String == "laundry"
+        var isLaundry : Bool = UserDefaults.standard.object(forKey: "isLaundry") as! String == "laundry"
         //
         //
         let order = Order()
@@ -1057,7 +981,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         SavedStates.set(" ", forKey: "dryCleaningCheckBox")
         
-        SavedStates.set(" ", forKey: "laundryOrDrycleaning")
+        SavedStates.set(" ", forKey: "isLaundry")
         
         
         //drycleaning cell
@@ -1220,7 +1144,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     
     func backPressed() {
         
-        if(UserDefaults.standard.object(forKey: "laundryOrDrycleaning") as! String == "dryCleaning"){
+        if(UserDefaults.standard.object(forKey: "isLaundry") as! String == "dryCleaning"){
             
             
             UIView.animate(withDuration: 0.3) {
