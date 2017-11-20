@@ -122,9 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
         
         printSignIn(signInType: 1)
     }
-    
-
-    
+ 
     // Handles Sign In
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
         -> Bool {
@@ -135,24 +133,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
                                                      annotation: options[UIApplicationOpenURLOptionsKey.annotation])
     }
     
-  /*
-    // Google User Signs in 2.0
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            printSignIn(signInType: 2)
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
-            // ...
-        } else {
-            print("\(error.localizedDescription)")
-        }
-    }
-  */
     func printSignIn(signInType: Int) {
         switch signInType {
         case 1:
@@ -200,34 +180,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
             annotation: annotation)
     }
     // [END old_options]
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     // Google User Disconnects

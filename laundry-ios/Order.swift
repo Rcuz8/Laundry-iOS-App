@@ -63,14 +63,17 @@ class Order {
         }
     }
     
-    func dbCreate() {
+    func dbCreate(finished: @escaping (_ success: Bool) -> ()) {
         print("Attempting to retreive order key: \(orderID!)")
 
         if let uid = clientID, let oid = fetchOrderID(), let orderJSON = json {
                 firebase.child("Users").child(uid).child("clientInfo").child("Orders").child(oid).setValue(orderJSON.dictionaryObject)
                 firebase.child("Orders").child("allOrders").child(oid).setValue(orderJSON.dictionaryObject)
+                finished(true)
             print("creating order in database . . .\n Order json object: \n\(orderJSON)")
-        } else { print("Cannot init one of three: laundromat, orderID, json") }
+        } else { print("Cannot init one of three: laundromat, orderID, json")
+        finished(false)
+        }
     }
     
     /*

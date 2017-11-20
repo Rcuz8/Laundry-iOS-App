@@ -13,7 +13,7 @@ import JTAppleCalendar
 import Firebase
 import IQKeyboardManagerSwift
 import FSCalendar
-
+import CoreLocation
 
 
 protocol clearDataAfterLetsGetWashingGetsPressed {
@@ -105,42 +105,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var calendarView: UIView!
-    
-    //calendar Items
-    //    @IBOutlet weak var calendarView: UIView!
-    //    let formatter = DateFormatter()
-    //
-    //    @IBOutlet weak var backgroundLabelCalendar: UILabel!
-    //    @IBOutlet weak var calendar: JTAppleCalendarView!
-    //
-    //    @IBOutlet weak var calendarOptionsSegment: UISegmentedControl!
-    //    @IBAction func nextMonth(_ sender: Any) {
-    //
-    //
-    //        calendar.deselectAllDates()
-    //        calendar.scrollToSegment(SegmentDestination.next)
-    //        calendar.deselectAllDates()
-    //
-    //
-    //
-    //
-    //
-    //    }
-    
-    //    var selected : Bool = false
-    
-    //    @IBOutlet weak var mainCalendarView: UIView!
-    
-    //    @IBAction func previousMonth(_ sender: Any) {
-    //
-    //        calendar.scrollToSegment(SegmentDestination.previous)
-    //
-    //    }
-    
-    
-    //@IBOutlet weak var hiddenView: UIView!
-    
-    //@IBOutlet weak var monthLabel: UILabel!
     
     
     @IBOutlet weak var instantButton: UIButton!
@@ -345,8 +309,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    
-    
     func addTableview(){
         
         tableView = UITableView(frame: CGRect(x: 10, y: self.view.frame.height-330, width: self.view.frame.width-20, height: 339))
@@ -513,11 +475,11 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
             cell.delegate = self
             
-            if defaults.object(forKey: "Instant") as! String! == "Selected" {
-                
+            if let onDemand = defaults.object(forKey: "isOnDemand") as? Bool {
+                if onDemand {
                 cell.instantBtn.layer.borderWidth = 2.0
                 cell.instantBtn.layer.borderColor = UIColor.black.cgColor
-                
+                }
             }
             
             return cell
@@ -542,8 +504,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         return arrayOfCellData[indexPath.row].height
         
     }
-    
-    
     
     func feedbackScreens(){
         
@@ -626,8 +586,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    
-    
     @IBAction func reportIssuePressed(_ sender: Any) {
         
         feedbackView.isHidden = true
@@ -653,9 +611,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         self.feedbackView.isHidden = true
         self.contactUsView.isHidden = false
-        
-        
-        
         
     }
     
@@ -696,8 +651,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             }
         }
     }
-    
-    
     
     func nextPressed(cell: dryCleaningCell) {
         
@@ -754,7 +707,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
         }
         
-        print("HEHE")
         print(numberOfShirts)
     }
     
@@ -796,23 +748,15 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             self.calendarView.isHidden = false
             self.tableView.isHidden = true
             
-            
         }
-        
-        print("HEHEHemfjeofjE")
-        
-        
+
     }
-    
-    
     
     func orderSummaryNextClicked(cell: orderSummaryCell) {
         
-        //
         UIView.animate(withDuration: 0.3) {
             
             self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-200, width: self.view.frame.width-20 , height: 190)
-            
             
             self.view.addSubview(self.tableView)
             
@@ -832,67 +776,124 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
         }
         
+        let ud = UserDefaults.standard
+        ud.set(" ", forKey: "StandardOrExpress")
+        ud.set(" ", forKey: "dryCleaningCheckBox")
         
-        
-        SavedStates.set(" ", forKey: "StandardOrExpress")
-        
-        SavedStates.set(" ", forKey: "dryCleaningCheckBox")
-        
-        
-        
-        
-        var isExpress : Bool = UserDefaults.standard.object(forKey: "StandardOrExpress") as! String == "Express"
-        
-        var isLaundry : Bool = UserDefaults.standard.object(forKey: "isLaundry") as! String == "laundry"
-        //
-        //
-        let order = Order()
-        order.orderID = "12345"
-        order.clientID = "Test1"
-        order.isOnDemand = false
-        order.location = HomeAddress(aStreetAddress: "103 Davidson Road", aCity: "Piscataway", aState: "New Jersey", aZip: "08854", aptNumber: "")
-        order.isExpress = true
-        order.isLaundry = true
-        order.specialPreferences = "Test 1 Preference 2"
-        order.review = OrderReview(overall: 3, pricing: 3, pickup: 3, dropoff: 3, customerService: 3)
-        order.status = OrderStatus.readyForPickup
-        order.laundromatID = "1"
-        order.inventory = Inventory()
-        order.scheduledTimes = ["12:00", "1:00"]
-        order.price = 2.5
-        
-        order.location?.getGeo(finished: { (success) in
-            if success { // Location is good
-                
-                if(order.valid()){ // Order is valid
-                    print("Valid")
-                    order.dbCreate()
+        if let express = ud.object(forKey: "isExpress") as? Bool, let laundry = ud.object(forKey: "isLaundry") as? Bool, let onDemand = ud.object(forKey: "isOnDemand") as? Bool, let address = ud.object(forKey: "address") as? String, let clientId = FIRAuth.auth()?.currentUser?.uid, let prefs = ud.object(forKey: "specialPreferences") as? String, let price = ud.object(forKey: "price") {
+            
+            // un-geocode address
+            let geoCoder = CLGeocoder()
+            geoCoder.geocodeAddressString(address) { (placemarks, error) in
+                guard
+                    let placemarks = placemarks,
+                    let location = placemarks.first?.location
+                    else {
+                        // handle no location found
+                        return
                 }
-                else{ // Order is invalid, notify user
-                    print("NOT VALID DATA: ")
-                    print("Order ID: \(order.orderID)")
-                    print("Client ID: \(order.clientID)")
-                    print("Express: \(order.isExpress)")
-                    print(order.isOnDemand)
-                    print("LOCATION VALID: \(order.location?.infoValid())")
-                    print(order.isLaundry)
-                    print(order.specialPreferences)
-                    print(order.review)
-                    print(order.status)
-                    print(order.laundromatID)
-                    print(order.inventory)
-                    print(order.scheduledTimes)
-                    print(order.price)
-                }
+                if let pm = placemarks.first {
+                    if let street = pm.thoroughfare, let city = pm.locality, let state = pm.administrativeArea, let zip = pm.postalCode {
+                        
+                        // Address Info Good
+                        
+                        let h = HomeAddress(aStreetAddress: street, aCity: city, aState: state, aZip: zip, aptNumber: nil)
+                        h.getGeo(finished: { (success) in
+                            if success {
+                                
+                                // Check Ordering Situation
+                                if onDemand {
+                                    let order = Order()
+                                    order.orderID = firebase.childByAutoId().key
+                                    order.clientID = clientId
+                                    order.isOnDemand = onDemand
+                                    order.location = h
+                                    order.isExpress = express
+                                    order.isLaundry = laundry
+                                    order.specialPreferences = prefs
+                                    order.review = OrderReview() // Changed later when order comes back
+                                    order.status = OrderStatus.readyForPickup
+                                    order.price = 15 // Algorithm should be here
+                                 //   order.scheduledTimes
+                                    
+                                } else {
+                                    let order = Order()
+                                    order.orderID = firebase.childByAutoId().key
+                                    order.clientID = clientId
+                                    order.isOnDemand = onDemand
+                                    order.location = h
+                                    order.isExpress = express
+                                    order.isLaundry = laundry
+                                    order.specialPreferences = prefs
+                                    order.review = OrderReview() // Changed later when order comes back
+                                    order.status = OrderStatus.readyForPickup
+                                    order.price = 15 // Algorithm should be here
+                                    var inv = Inventory()
+                                    
+                                    // init inventory
+                                    if laundry {
+                                        if let bags = ud.integer(forKey: "bagCount") as? Int{
+                                            inv.bagCount = bags
+                                        } else { /* Error */ }
+                                    } else {
+                                        if let shirts = ud.integer(forKey: "numShirts") as? Int, let pants = ud.integer(forKey: "numPants") as? Int,  let ties = ud.integer(forKey: "numTies") as? Int, let suits = ud.integer(forKey: "numSuits") as? Int, let jackets = ud.integer(forKey: "numJackets") as? Int, let dresses = ud.integer(forKey: "numDresses") as? Int {
+                                            inv.numSuits = suits; inv.numTies = ties; inv.numShirts = shirts; inv.numPants = pants; inv.numDresses = dresses; inv.numJackets = jackets;
+                                        }
+                                    }
+                                    order.inventory = inv
+                                    
+                                    // init scheduled orders
+                                    if let orderDates = ud.array(forKey: "scheduledOrderDates") as? [String] {
+                                        for date in orderDates {
+                                            order.scheduledTimes?.append(date)
+                                        }
+                                     
+                                    } else if let dayOfWeek = ud.object(forKey: "scheduledDayOfWeek") as? String, let dowTime = ud.object(forKey: "scheduledDayOfWeekTime") as? String {
+                                        order.scheduledTimes?.append("\(dayOfWeek) at \(dowTime)")
+                                    }
+                                
+                                    
+                                    // Create Order
+                                    
+                                    order.findLaundromat(finished: { (success) in
+                                        if success {
+                                            order.dbCreate(finished: { (success) in
+                                                
+                                                if success {
+                                                    
+                                                    order.moveToOpenOrders()
+                                                    
+                                                } else {
+                                                    // Error
+                                                }
+                                            })
+                                        } else {
+                                            // Error
+                                        }
+                                    })
+                                    
+                                    
+                                    
+                                }
+                                
+                                
+                                
+                            }
+                        })
+                        
+                    } else {
+                        // Error
+                    }
                 
-            } else {
-                // Location not good, notify user
+                } else {
+                    // Error
+                }
+                // Use your location
             }
-        })
-        
-        
-        
-        
+            
+            
+        }
+ 
     }
     
     @IBOutlet weak var calendar: FSCalendar!
@@ -901,7 +902,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     func backBtnPressed() {
         
         
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3) {2
             
             
             self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-460, width: self.view.frame.width-20 , height: 450)
@@ -931,6 +932,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         }
         
     }
+    
     @IBOutlet weak var menuB: UINavigationBar!
     
     @IBAction func LetsGetWashingAction(_ sender: Any) {
@@ -1014,8 +1016,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    
-    
     func backButtonPressed() {
         
         UIView.animate(withDuration: 0.3) {
@@ -1031,13 +1031,11 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    
     func getDirections(){
         guard let selectedPin = selectedPin else { return }
         let mapItem = MKMapItem(placemark: selectedPin)
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         mapItem.openInMaps(launchOptions: launchOptions)
-        
         
     }
     
@@ -1055,7 +1053,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         }
         
     }
-    
     
     @IBAction func calendarNextButtonPressed(_ sender: Any) {
         
@@ -1135,48 +1132,40 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    //    func calendar(_ calendar: FSCalendar, hasEventFor date: Date) -> Bool {
-    //
-    //
-    //
-    //    }
-    
-    
     func backPressed() {
         
-        if(UserDefaults.standard.object(forKey: "isLaundry") as! String == "dryCleaning"){
-            
-            
-            UIView.animate(withDuration: 0.3) {
-                
-                self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-374, width: self.view.frame.width-20, height: 364)
-                // self.view.addSubview(self.tableView)
-                
-                self.tableView.scrollRectToVisible( CGRect(x: 0, y:self.arrayOfCellData[0].yCoor+self.arrayOfCellData[0].height, width: self.view.frame.width, height: 364), animated: true)
-                
-            }
-        }
-        else{
-            
-            
-            
-            UIView.animate(withDuration: 0.3) {
-                
-                
-                
-                
-                self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-350, width: self.view.frame.width-20, height: 340)
-                self.view.addSubview(self.tableView)
-                
-                self.tableView.scrollRectToVisible( CGRect(x: 0, y: self.arrayOfCellData[1].yCoor+self.arrayOfCellData[1].height, width: self.view.frame.width, height: 340), animated: true)
-                
-                IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
-                
-            }
-            
-            
-        }
+        let ud = UserDefaults.standard
         
+        if let laundry = ud.bool(forKey: "isLaundry") as? Bool {
+            if !laundry {
+                UIView.animate(withDuration: 0.3) {
+                    
+                    self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-374, width: self.view.frame.width-20, height: 364)
+                    // self.view.addSubview(self.tableView)
+                    
+                    self.tableView.scrollRectToVisible( CGRect(x: 0, y:self.arrayOfCellData[0].yCoor+self.arrayOfCellData[0].height, width: self.view.frame.width, height: 364), animated: true)
+                    
+                }
+            } else {
+                UIView.animate(withDuration: 0.3) {
+                    
+                    
+                    
+                    
+                    self.tableView.frame = CGRect(x: 10, y: self.view.frame.height-350, width: self.view.frame.width-20, height: 340)
+                    self.view.addSubview(self.tableView)
+                    
+                    self.tableView.scrollRectToVisible( CGRect(x: 0, y: self.arrayOfCellData[1].yCoor+self.arrayOfCellData[1].height, width: self.view.frame.width, height: 340), animated: true)
+                    
+                    IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
+                    
+                }
+            }
+            
+            
+        } else {
+            // Error
+        }
     }
     
     func orderSummaryBack() {
@@ -1216,31 +1205,11 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    
-    
-    //    func handleTextColor(view: JTAppleCell?, cellState: CellState!){
-    //
-    //        guard let validCell = view as? CustomCell else{return}
-    //
-    //
-    //        if(cellState.dateBelongsTo == .thisMonth){
-    //            validCell.dateLabel.textColor = UIColor.black
-    //        }
-    //        else{
-    //            validCell.dateLabel.textColor = UIColor.veryLightGray
-    //        }
-    //
-    //
-    //
-    //    }
-    
     func show() {
-        print("IDGAF")
         self.getWashing.isHidden = false
         
     }
     func hide() {
-        print("Hide")
         self.getWashing.isHidden = true
         
         
@@ -1252,27 +1221,13 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         
     }
-    
-    
-    
-    
+ 
     func addToCalendar(date: Date) {
-        
-        
-        
-        //calendar.allowsSelection = true
-        // calendar.select(date, scrollToDate: true)
-        //
-        //
-        //        calendar.cell(for: date, at: .current).eventIndicator.color = UIColor.blue
-        //
-        //        calendar.cell(for: date, at: .current).numberOfEvents += 1
         
         let formatter = DateFormatter()
         formatter.dateFormat = "MM-dd-yyyy"
         
         var c : Int = 0
-        
         
         if(calendar.cell(for: date, at: .current).numberOfEvents != 0){
             
@@ -1280,7 +1235,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
             let temp = numberOfEvents[c] + 1
             numberOfEvents[c] = temp
-            
             
         }
         else{
@@ -1309,28 +1263,17 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    
-    
-    
-    
-    
-    
-    //
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "s"){
-            
-            
+       
             let destVC : schedulePickerViewController = segue.destination as! schedulePickerViewController
             destVC.delegate = self
             
         }
-        
-        
-        
+
     }
-    //
-    
+
 }
 
 
@@ -1431,83 +1374,3 @@ class UnderlinedLabel: UILabel {
 }
 
 
-//extension mapViewController : JTAppleCalendarViewDataSource{
-//
-//
-//    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-//
-//        self.formatter.dateFormat = "yyyy MM dd"
-//        self.formatter.timeZone = Calendar.current.timeZone
-//        self.formatter.locale = Calendar.current.locale
-//
-//        let startDate = self.formatter.date(from: "2017 01 01")
-//        let endDate = self.formatter.date(from: "2017 12 31")
-//
-//        //let parameters = ConfigurationParameters(startDate: startDate!, endDate: endDate!)
-//        let parameters = ConfigurationParameters(startDate: startDate!, endDate: endDate!, numberOfRows: 6, calendar: Calendar.current , generateInDates: .forAllMonths , generateOutDates: .none , firstDayOfWeek: DaysOfWeek.sunday, hasStrictBoundaries: true)
-//
-//
-//
-//
-//        return parameters
-//
-//    }
-//
-//
-//}
-
-
-//extension mapViewController : JTAppleCalendarViewDelegate{
-//
-//
-//    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-//
-//        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
-//
-//        cell.dateLabel.text = cellState.text
-//
-//
-//
-//        handleTextColor(view: cell, cellState: cellState)
-//        calendar.allowsMultipleSelection = true
-//
-//        return cell
-//    }
-//
-//    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-//
-//        let date = visibleDates.monthDates.first!.date
-//
-//        formatter.dateFormat = "MMMM"
-//
-//        monthLabel.text = formatter.string(from: date)
-//
-//
-//
-//    }
-//
-//
-//    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-//
-//        guard let validCell = cell as? CustomCell else{return}
-//        
-//        
-//        
-//        if(selected){
-//            
-//            validCell.selectedView.isHidden = true
-//            selected = true
-//            
-//            
-//        }
-//        else{
-//        
-//            validCell.selectedView.isHidden = false
-//            selected = false
-//        
-//        }
-//        
-//    }
-//  
-//
-//}
