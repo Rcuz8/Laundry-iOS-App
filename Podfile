@@ -6,7 +6,7 @@ project 'laundry-ios.xcodeproj'
 target 'laundry-ios' do
   # Comment the next line if you're not using Swift and don't want to use dynamic 
   use_frameworks!
-  	pod 'Stripe', '~> 6.2.0'
+  	pod 'Stripe', '~> 11.0'
   	pod 'GoogleMaps'
   	pod 'GooglePlaces'
   	pod 'Alamofire’, '~> 4.4'
@@ -29,4 +29,5 @@ target 'laundry-ios' do
 	pod ‘DropDown’
 	pod 'FSCalendar'
 	pod 'NVActivityIndicatorView'
+	pod 'PromiseKit', '~> 4.0'
 end

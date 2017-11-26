@@ -204,7 +204,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "354"
             endingLineNumber = "354"
-            landmarkName = "getClientPicture(finished:)"
+            landmarkName = "save(finished:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -220,7 +220,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "356"
             endingLineNumber = "356"
-            landmarkName = "getClientPicture(finished:)"
+            landmarkName = "save(finished:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -284,8 +284,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
             endingLineNumber = "70"
-            landmarkName = "convertedSavedLocations"
-            landmarkType = "24">
+            landmarkName = "init(id:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -595,7 +595,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "laundry-ios/AppDelegate.swift"
@@ -611,7 +611,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "laundry-ios/AppDelegate.swift"
@@ -627,7 +627,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "laundry-ios/AppDelegate.swift"
@@ -643,7 +643,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "laundry-ios/AppDelegate.swift"
@@ -659,7 +659,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "laundry-ios/Client.swift"
@@ -668,14 +668,14 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
             endingLineNumber = "120"
-            landmarkName = "Client"
-            landmarkType = "3">
+            landmarkName = "convertedOrders"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "laundry-ios/Client.swift"
@@ -684,14 +684,14 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "123"
             endingLineNumber = "123"
-            landmarkName = "dbFill(finished:)"
-            landmarkType = "7">
+            landmarkName = "convertedOrders"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "laundry-ios/Client.swift"
@@ -700,18 +700,18 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "128"
             endingLineNumber = "128"
-            landmarkName = "dbFill(finished:)"
-            landmarkType = "7">
+            landmarkName = "Client"
+            landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.specialPreferencesCell.awakeFromNib () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.604435"
+                  timestampString = "533239128.312878"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -719,14 +719,14 @@
                   offsetFromSymbolStart = "409">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.specialPreferencesCell.doneButtonPressed (Any) -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.607211"
+                  timestampString = "533239128.315988"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -734,14 +734,14 @@
                   offsetFromSymbolStart = "1407">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mProfileViewController.addBackgroundPhoto () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.609735"
+                  timestampString = "533239128.318787"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -749,14 +749,14 @@
                   offsetFromSymbolStart = "248">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.LocationSearchTable.viewDidLoad () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.611997"
+                  timestampString = "533239128.322029"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -764,14 +764,14 @@
                   offsetFromSymbolStart = "585">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mOrderHistoryViewController.fillTable () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.614791"
+                  timestampString = "533239128.324818"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -779,14 +779,14 @@
                   offsetFromSymbolStart = "300">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mNameViewController.fillAppropriately () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.617334"
+                  timestampString = "533239128.328192"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -794,14 +794,29 @@
                   offsetFromSymbolStart = "444">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed, Arg[2] = Owned To Guaranteed, Arg[3] = Owned To Guaranteed&gt; of laundry_ios.mapViewController.(OrderPressed (cell : laundry_ios.SecondPaymentCell) -&gt; ()).(closure #2).(closure #1).(closure #1).(closure #1).(closure #1)"
+                  moduleName = "laundry-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
+                  timestampString = "533239128.336876"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "73">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Dead, Arg[2] = Owned To Guaranteed, Arg[3] = Owned To Guaranteed&gt; of laundry_ios.AppDelegate.(sign (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.GIDSignIn&gt;, didSignInFor : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.GIDGoogleUser&gt;, withError : Swift.Optional&lt;Swift.Error&gt;) -&gt; ()).(closure #1)"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.620166"
+                  timestampString = "533239128.339854"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -809,14 +824,14 @@
                   offsetFromSymbolStart = "467">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "function signature specialization &lt;Arg[0] = Dead, Arg[2] = Dead, Arg[3] = Owned To Guaranteed&gt; of laundry_ios.mLoginViewController.(getFacebookUserInfo () -&gt; ()).(closure #1).(closure #1)"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.623169"
+                  timestampString = "533239128.342814"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -824,14 +839,14 @@
                   offsetFromSymbolStart = "3578">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.AddPreferenceView.viewDidLoad () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.62571"
+                  timestampString = "533239128.345674"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -839,14 +854,14 @@
                   offsetFromSymbolStart = "787">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.AddPreferenceView.addPreference (Any) -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.628816"
+                  timestampString = "533239128.348612"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -854,14 +869,14 @@
                   offsetFromSymbolStart = "1534">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mOrderingPreferencesViewController.fillData () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.63165"
+                  timestampString = "533239128.35177"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -869,14 +884,14 @@
                   offsetFromSymbolStart = "320">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mInfoViewController.viewDidLoad () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.634573"
+                  timestampString = "533239128.354888"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -884,14 +899,14 @@
                   offsetFromSymbolStart = "309">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mInfoViewController.fillAppropriately () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.637696"
+                  timestampString = "533239128.358217"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -899,14 +914,14 @@
                   offsetFromSymbolStart = "241">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mInfoViewController.checkForExisting () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.640805"
+                  timestampString = "533239128.360453"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -914,14 +929,14 @@
                   offsetFromSymbolStart = "479">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.AddLocationView.viewDidLoad () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.643424"
+                  timestampString = "533239128.362653"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -929,14 +944,14 @@
                   offsetFromSymbolStart = "777">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "function signature specialization &lt;Arg[1] = Owned To Guaranteed, Arg[2] = Owned To Guaranteed&gt; of laundry_ios.AddLocationView.(save (Any) -&gt; ()).(closure #1)"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.646101"
+                  timestampString = "533239128.364998"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -949,7 +964,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "laundry-ios/Client.swift"
@@ -962,14 +977,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.specialPreferencesCell.awakeFromNib () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.663636"
+                  timestampString = "533239128.388462"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -977,14 +992,14 @@
                   offsetFromSymbolStart = "711">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.specialPreferencesCell.doneButtonPressed (Any) -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.665591"
+                  timestampString = "533239128.391481"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -992,14 +1007,14 @@
                   offsetFromSymbolStart = "2035">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mProfileViewController.addBackgroundPhoto () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.667839"
+                  timestampString = "533239128.394285"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1007,14 +1022,14 @@
                   offsetFromSymbolStart = "745">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.LocationSearchTable.viewDidLoad () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.670216"
+                  timestampString = "533239128.397003"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1022,14 +1037,14 @@
                   offsetFromSymbolStart = "901">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mOrderHistoryViewController.fillTable () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.674568"
+                  timestampString = "533239128.399748"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1037,14 +1052,14 @@
                   offsetFromSymbolStart = "600">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mNameViewController.fillAppropriately () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.677022"
+                  timestampString = "533239128.402638"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1052,14 +1067,29 @@
                   offsetFromSymbolStart = "846">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed, Arg[2] = Owned To Guaranteed, Arg[3] = Owned To Guaranteed&gt; of laundry_ios.mapViewController.(OrderPressed (cell : laundry_ios.SecondPaymentCell) -&gt; ()).(closure #2).(closure #1).(closure #1).(closure #1).(closure #1)"
+                  moduleName = "laundry-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
+                  timestampString = "533239128.405282"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "420">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Dead, Arg[2] = Owned To Guaranteed, Arg[3] = Owned To Guaranteed&gt; of laundry_ios.AppDelegate.(sign (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.GIDSignIn&gt;, didSignInFor : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.GIDGoogleUser&gt;, withError : Swift.Optional&lt;Swift.Error&gt;) -&gt; ()).(closure #1)"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.679482"
+                  timestampString = "533239128.407857"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1067,14 +1097,14 @@
                   offsetFromSymbolStart = "677">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "function signature specialization &lt;Arg[0] = Dead, Arg[2] = Dead, Arg[3] = Owned To Guaranteed&gt; of laundry_ios.mLoginViewController.(getFacebookUserInfo () -&gt; ()).(closure #1).(closure #1)"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.682095"
+                  timestampString = "533239128.410677"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1082,14 +1112,14 @@
                   offsetFromSymbolStart = "4027">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.AddPreferenceView.viewDidLoad () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.684869"
+                  timestampString = "533239128.413605"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1097,14 +1127,14 @@
                   offsetFromSymbolStart = "1221">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.AddPreferenceView.addPreference (Any) -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.687924"
+                  timestampString = "533239128.416524"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1112,14 +1142,14 @@
                   offsetFromSymbolStart = "1914">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mOrderingPreferencesViewController.fillData () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.691488"
+                  timestampString = "533239128.419165"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1127,14 +1157,14 @@
                   offsetFromSymbolStart = "597">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mInfoViewController.viewDidLoad () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.694626"
+                  timestampString = "533239128.42508"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1142,14 +1172,14 @@
                   offsetFromSymbolStart = "600">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mInfoViewController.fillAppropriately () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.697379"
+                  timestampString = "533239128.43011"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1157,14 +1187,14 @@
                   offsetFromSymbolStart = "522">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.mInfoViewController.checkForExisting () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.700018"
+                  timestampString = "533239128.432671"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1172,14 +1202,14 @@
                   offsetFromSymbolStart = "851">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "laundry_ios.AddLocationView.viewDidLoad () -&gt; ()"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.702132"
+                  timestampString = "533239128.434865"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1187,14 +1217,14 @@
                   offsetFromSymbolStart = "1195">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "function signature specialization &lt;Arg[1] = Owned To Guaranteed, Arg[2] = Owned To Guaranteed&gt; of laundry_ios.AddLocationView.(save (Any) -&gt; ()).(closure #1)"
                   moduleName = "laundry-ios"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/Client.swift"
-                  timestampString = "532899284.705229"
+                  timestampString = "533239128.437165"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -1207,7 +1237,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "laundry-ios/Client.swift"
@@ -1236,22 +1266,6 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "laundry-ios/Client.swift"
-            timestampString = "527053195.119632"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "513"
-            endingLineNumber = "513"
-            landmarkName = "getStripeSources(finished:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1377,6 +1391,165 @@
             endingLineNumber = "27"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "laundry-ios/SecondPaymentCell.swift"
+            timestampString = "533244401.634606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "laundry-ios/MainAPI.swift"
+            timestampString = "533111701.784614"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "MainAPI"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "laundry-ios/SecondPaymentCell.swift"
+            timestampString = "533244401.634606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "showAddCard()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "laundry-ios/SecondPaymentCell.swift"
+            timestampString = "533244401.634606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "showAddCard()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "laundry-ios/SecondPaymentCell.swift"
+            timestampString = "533244401.634606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "showAddCard()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "laundry-ios/SecondPaymentCell.swift"
+            timestampString = "533244401.634606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "showAddCard()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "laundry-ios/SecondPaymentCell.swift"
+            timestampString = "533244788.59287"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "SecondPaymentCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "laundry_ios.SecondPaymentCell.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;laundry_ios.SecondPaymentCell&gt;"
+                  moduleName = "laundry-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/SecondPaymentCell.swift"
+                  timestampString = "533244790.817295"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "10">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "laundry_ios.SecondPaymentCell.__deallocating_deinit"
+                  moduleName = "laundry-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/SecondPaymentCell.swift"
+                  timestampString = "533244790.81998"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[1] = Owned To Guaranteed&gt; of laundry_ios.SecondPaymentCell.init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; laundry_ios.SecondPaymentCell"
+                  moduleName = "laundry-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Ryan/Desktop/lavo-master/laundry-ios/SecondPaymentCell.swift"
+                  timestampString = "533244790.822825"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "368">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

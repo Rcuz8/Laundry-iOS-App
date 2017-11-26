@@ -14,7 +14,7 @@ import Stripe
 
 
 protocol paymentDelegate {
-    func OrderPressed(cell: paymentCell)
+    func OrderPressed(cell: SecondPaymentCell)  // was paymentCell
     func paymentScreenBackPressed()
 }
 
@@ -103,18 +103,18 @@ class paymentCell: UITableViewCell, UITextFieldDelegate, STPPaymentCardTextField
         
         //personalOutlet.setTitle(UserDefaults.standard.object(forKey: "t") as! String, for: .normal)
         
-        if let id = FIRAuth.auth()?.currentUser?.uid {
-            let client = Client(id: id)
-            client.getStripeSources(finished: { (unwrappedSources) in
-                if let sources = unwrappedSources {
-                for source in sources {
-                    if let email = source.email { self.paypalEmail = email }
-                    self.sourceIDs.append(source.sourceID)
-                    if let cardNums = source.last4digits { self.cardInfos.append(cardNums) }
-                }
-                }
-            })
-        }
+//        if let id = FIRAuth.auth()?.currentUser?.uid {
+//            let client = Client(id: id)
+//            client.getStripeSources(finished: { (unwrappedSources) in
+//                if let sources = unwrappedSources {
+//                for source in sources {
+//                    if let email = source.email { self.paypalEmail = email }
+//                    self.sourceIDs.append(source.sourceID)
+//                    if let cardNums = source.last4digits { self.cardInfos.append(cardNums) }
+//                }
+//                }
+//            })
+//        }
         
         
     }
@@ -276,15 +276,19 @@ class paymentCell: UITableViewCell, UITextFieldDelegate, STPPaymentCardTextField
     /////////////Payent stripe methods/////////////
     
     
-    
+    // This is where we attain payment stuff
     func paymentCardTextFieldDidChange(_ textField: STPPaymentCardTextField) {
         
         if(textField.isValid){
             SCLAlertView().showSuccess("Verified", subTitle: "Your payment has been verified and you are now ready to place your order!")
             
             self.paymentTextField.resignFirstResponder()
+            if let last4 = textField.cardParams.last4(), let img = textField.brandImage {
+                
+            }
+            }
             
-        }
+        
         
     }
     

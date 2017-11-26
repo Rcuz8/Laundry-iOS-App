@@ -98,10 +98,19 @@ PODS:
   - IQKeyboardManagerSwift (4.0.9)
   - JTAppleCalendar (7.0.2)
   - NVActivityIndicatorView (3.6.1)
+  - PromiseKit (4.4.0):
+    - PromiseKit/Foundation (= 4.4.0)
+    - PromiseKit/QuartzCore (= 4.4.0)
+    - PromiseKit/UIKit (= 4.4.0)
+  - PromiseKit/CorePromise (4.4.0)
+  - PromiseKit/Foundation (4.4.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.4.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.4.0):
+    - PromiseKit/CorePromise
   - SCLAlertView (0.7.0)
-  - Stripe (6.2.0):
-    - Stripe/Core (= 6.2.0)
-  - Stripe/Core (6.2.0)
+  - Stripe (11.3.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
@@ -125,8 +134,9 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JTAppleCalendar (~> 7.0)
   - NVActivityIndicatorView
+  - PromiseKit (~> 4.0)
   - SCLAlertView
-  - Stripe (~> 6.2.0)
+  - Stripe (~> 11.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -158,10 +168,11 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
   JTAppleCalendar: c14685634064ef67a68209548ff3443208af48a3
   NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
+  PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
-  Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
+  Stripe: 3c86dc18af21e59dd559aa15e83cb501248f9903
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 83204880ba35f52f982b1e7149d2a915a3857768
+PODFILE CHECKSUM: f2a9947e83115dac71d0f338c4e84bae5a0e7b37
 
 COCOAPODS: 1.2.1

@@ -40,7 +40,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="41" id="aJg-qd-Of0"/>
                         </constraints>
-                        <state key="normal" title="Personal"/>
+                        <state key="normal" title="Saved Payment Methods"/>
                         <connections>
                             <action selector="personalPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HC0-d7-ZsZ"/>
                         </connections>

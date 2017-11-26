@@ -244,10 +244,6 @@ class LocationSearchTable: UITableViewController, closeSearch, CLLocationManager
         
         
     }
-//
-//    
-    
-    
     
     func parseAddress(_ selectedItem:MKPlacemark) -> String {
         
@@ -288,10 +284,7 @@ class LocationSearchTable: UITableViewController, closeSearch, CLLocationManager
         
         
     }
-    
-    
-    
-    
+
     func closeSearchField(but: UIButton!) {
         
         
@@ -339,9 +332,23 @@ class LocationSearchTable: UITableViewController, closeSearch, CLLocationManager
         let selectedItem = matchingItems[indexPath.row].placemark
         handleMapSearchDelegate?.dropPinZoomIn(selectedItem)
         layoverView.isHidden = true
-        addressString = selectedItem.title!
+        if let place = selectedItem.title {
+            addressString = place
+            if let search = searchBar {
+                print("found searchbar within location search table")
+                search.text = place
+            } else {
+                print("cannot find search bar")
+            }
+            if let presentingView = self.presentingViewController as? mapViewController {
+                print("found presenting view")
+                presentingView.resultSearchController.searchBar.text = place
+            } else {
+                print("cannot find presenting view as mapViewController")
+            }
+            UserDefaults.standard.set(place, forKey: "address")
+        }
         
-        UserDefaults.standard.set(selectedItem.title, forKey: "address")
         
         
         dismiss(animated: true, completion: nil)
@@ -353,10 +360,6 @@ class LocationSearchTable: UITableViewController, closeSearch, CLLocationManager
 
 
 extension LocationSearchTable : UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate{
-    
-    
-
-    
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -404,7 +407,6 @@ extension LocationSearchTable : UISearchResultsUpdating, UISearchBarDelegate, UI
         
     }
     
-    
     func didPresentSearchController(_ searchController: UISearchController) {
         
         print("didPresentSearchController")
@@ -419,7 +421,6 @@ extension LocationSearchTable : UISearchResultsUpdating, UISearchBarDelegate, UI
         
         
     }
- 
     
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

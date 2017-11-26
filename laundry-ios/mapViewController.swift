@@ -139,7 +139,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     var events = [String]()
     var numberOfEvents = [Int]()
     
-    
+    var stripeCustomerId: String!
     
     
     override func viewDidLoad() {
@@ -234,11 +234,6 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         calendar.layer.cornerRadius = 20
         calendar.layer.borderColor = UIColor.lavoSlightlyDarkBlue.cgColor
         calendar.layer.borderWidth = 2.0
-        
-        
-        
-        
-        
         
     }
     
@@ -488,11 +483,23 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
         else{
             
-            let cell = Bundle.main.loadNibNamed("paymentCell", owner: self, options: nil)?.first as! paymentCell
-
-            cell.delegate = self
+            if let cell = Bundle.main.loadNibNamed("SecondPaymentCell", owner: self, options: nil)?.first as? SecondPaymentCell {
+                print("found second payment cell")
+                cell.delegate = self
+                
+                return cell
+            }else if let cell = Bundle.main.loadNibNamed("SecondPaymentCell", owner: self, options: nil)?.first {
+                print("found a cell")
+                let cell = SecondPaymentCell()
+                cell.delegate = self
+                return cell
+            } else {
+                print("could not find second payment cell")
+                let cell = SecondPaymentCell()
+                cell.delegate = self
+                return cell
+            }
             
-            return cell
             
         }
         
@@ -766,8 +773,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    
-    func OrderPressed(cell: paymentCell) {
+    // ------------------------ Order -------------------------- //
+    func OrderPressed(cell: SecondPaymentCell) {
         
         UIView.animate(withDuration: 0.3) {
             
@@ -861,7 +868,61 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
                                                 
                                                 if success {
                                                     
-                                                    order.moveToOpenOrders()
+                                                    // Charge User:
+                                                    //    1. Create User
+                                                    //    2. Add Payment Method
+                                                    //    3. Pay
+                                                    
+                                                    func postCharge(id customerId: String) {
+                                                        let orderPrice = Int(order.price!) * 100 // Converted
+                                                        API.postCharge(customerId: customerId, amount: orderPrice)
+                                                            .then { res -> Void in
+                                                                print("Result")
+                                                                print(res)
+                                                            }.catch { err in print(err.localizedDescription) }
+                                                    }
+                                                    
+                                                    let client = Client(id: clientId)
+                                                    
+                                                    client.getStripeCustomerId(finished: { (stripeIdTokenString) in
+                                                        if let id = stripeIdTokenString {
+                                                            
+                                                            postCharge(id: id)
+                                                            order.moveToOpenOrders()
+                                                        } else {
+                                                            client.dbFill {
+                                                                
+                                                                // We now have Client info
+                                                                if let email = client.email {
+                                                                    API.postNewCustomer(email: email).then { res -> Void in
+                                                                        print("Result")
+                                                                        print(res)
+                                                                        let customerId = res["customerId"] as! String;
+                                                                        self.stripeCustomerId = customerId
+                                                                        // charge
+                                                                        postCharge(id: customerId)
+                                                                        
+                                                                        }.catch { err in print(err.localizedDescription) }
+                                                                    
+                                                                    
+                                                                } else {
+                                                                    // Error
+                                                                }
+                                                                
+                        // Will be Used!!
+                                                                
+                        //                                                    @IBAction func didTapCard(_ sender: Any) {
+                        //                                                        showAddCard()
+                        //                                                    }
+
+                                                                
+                                                                order.moveToOpenOrders()
+                                                                
+                                                                
+                                                            }
+                                                        }
+                                                    })
+                                                    
                                                     
                                                 } else {
                                                     // Error
@@ -871,13 +932,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
                                             // Error
                                         }
                                     })
-                                    
-                                    
-                                    
                                 }
-                                
-                                
-                                
                             }
                         })
                         
@@ -1216,7 +1271,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     }
     
     func currLocPressed(addy: String!) {
-        
+        resultSearchController.searchBar.text = addy
         LetsGetWashingActionCode()
         
         
@@ -1358,6 +1413,37 @@ extension mapViewController : MKMapViewDelegate {
     }
 }
 
+extension mapViewController: STPAddCardViewControllerDelegate {
+    func showAddCard() {
+        let addCardViewController = STPAddCardViewController()
+        addCardViewController.delegate = self
+        // STPAddCardViewController must be shown inside a UINavigationController.
+        let navigationController = UINavigationController(rootViewController: addCardViewController)
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
+    func saveCard(token: STPToken) {
+        
+        API.postNewCard(customerId: stripeCustomerId, token: token).then { res -> Void in
+            self.dismiss(animated: true)
+            }
+            .catch { err in print(err.localizedDescription) }
+    }
+    
+    // MARK: STPAddCardViewControllerDelegate
+    func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
+        self.dismiss(animated: true)
+    }
+    
+    func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreateToken token: STPToken, completion: @escaping STPErrorBlock) {
+        
+        print("TOKEN\(token)")
+        saveCard(token: token)
+        completion(nil)
+        
+    }
+    
+}
 
 class UnderlinedLabel: UILabel {
     

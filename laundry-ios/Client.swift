@@ -45,7 +45,7 @@ class Client {
     
     var profilePicture: UIImage?
     
-    var stripeToken: String? // not included in JSON representation
+    var stripeCustomerId: String? // not included in JSON representation
     
     func valid() -> Bool {
         if let cId = self.id, let cEmail = self.email, let cFirstName = self.firstName, let cLastName = self.lastName, let cPhoneNumber = self.phoneNumber, savedLocations != nil, homeAddress != nil, homeAddress!.infoValid(), savedOrderingPreferences != nil, orders != nil {
@@ -464,8 +464,8 @@ class Client {
     /// Stores Stripe token variable into database
     ///
     /// - Parameter finished: Upon completion, this callback method will execute specifying the success of saving the token.
-    func storeStripeToken(finished: @escaping (_ success: Bool) -> ()) {
-        if let token = stripeToken, let uid = self.id { // good
+    func storeStripeCustomerId(finished: @escaping (_ success: Bool) -> ()) {
+        if let token = stripeCustomerId, let uid = self.id { // good
             firebase.child("Users").child(uid).child("paymentInfo").child("stripeToken").setValue(token)
             finished(true)
         } else { // no stripe token or uid
@@ -473,7 +473,7 @@ class Client {
         }
     }
     
-    func getStripeToken(finished: @escaping (_ token: String?) -> ()) {
+    func getStripeCustomerId(finished: @escaping (_ token: String?) -> ()) {
         if let uid = self.id { // good
         firebase.child("Users").child(uid).child("paymentInfo").observeSingleEvent(of: .value, with: { (snap) in
             if let value = snap.value as? [String: AnyObject] {
@@ -496,50 +496,52 @@ class Client {
     
     
     
-    func storeStripeSource(withID sourceID: String, last4digits: String?, email: String?, finished: @escaping (_ success: Bool) -> ()) {
+    func storeStripeSource(withID sourceID: String, last4digits digits: String, finished: @escaping (_ success: Bool) -> ()) {
         if let uid = self.id { // good
-            if let last4 = last4digits {
-                let sourceObject = [ "last4digits": last4,
-                                                      "email": nil, ]
-                firebase.child("Users").child(uid).child("paymentInfo").child("stripeSources").child(sourceID).setValue(sourceObject)
+                let sourceObject = [ "cardInfo": digits,
+                                                      "sourceID": sourceID, ]
+                firebase.child("Users").child(uid).child("paymentInfo").child("stripeSources").childByAutoId().setValue(sourceObject)
                 finished(true)
-            } else if let sEmail = email {
-                let sourceObject = [ "last4digits": nil,
-                                                           "email": sEmail, ]
-                firebase.child("Users").child(uid).child("paymentInfo").child("stripeSources").child(sourceID).setValue(sourceObject)
-                finished(true)
-            } else {
-                finished(false)
-            }
-            
-            
         } else { // no stripe token or uid
             finished(false)
         }
     }
 
-    func getStripeSources(finished: @escaping (_ sources: [bSource]?) -> ()) {
-        var sources = [bSource]()
+    
+    /*
+     
+     JSON Structure:
+     
+     Users
+        UID
+          paymentInfo
+            stripeSources
+              randomID (serves as folder)
+                 sourceID: (actual source ID)
+    
+    */
+     // Get Stripe Sources (New) --> Return an array of Strings that represent the sourceID
+    func getStripeSources(finished: @escaping (_ sources: [String], _ cardInfos: [String]) -> ()) {
+        var sources = [String]()
+        var cardInfos = [String]()
         if let uid = self.id { // good
             firebase.child("Users").child(uid).child("paymentInfo").child("stripeSources").observeSingleEvent(of: .value, with: { (snap) in
                 if let value = snap.value as? [String: AnyObject] {
                     for child in value {
-                        let sourceID = child.key
-                        let source = bSource(sourceID)
-                        if let email = child.value["email"] as? String {
-                            source.email = email
-                            sources.append(source)
-                        } else if let last4 = child.value["last4digits"] as? String {
-                            source.last4digits = last4
-                            sources.append(source)
+                        if let sourceID = child.value["sourceID"] as? String {
+                            sources.append(sourceID)
+                        }
+                        if let cardInfo = child.value["cardInfo"] as? String {
+                            cardInfos.append(cardInfo)
                         }
                     }
-                    finished(sources)
-                } else { finished(nil) }
+                    finished(sources, cardInfos)
+                } else { finished(sources, cardInfos) }
                 
             })
-        } else { finished(nil) }
+        } else { finished(sources, cardInfos) }
     }
+    
     
     
 }

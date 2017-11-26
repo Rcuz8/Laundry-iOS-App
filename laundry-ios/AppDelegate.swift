@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = self
         
         Stripe.setDefaultPublishableKey("pk_test_lg4KhXtxw5kCceuSCGEz2k8M")
-        
+        STPPaymentConfiguration.shared().publishableKey = "pk_test_lg4KhXtxw5kCceuSCGEz2k8M"
         self.window = UIWindow(frame: UIScreen.main.bounds)
        self.window!.makeKeyAndVisible()
       //  signOutOfFirebase()

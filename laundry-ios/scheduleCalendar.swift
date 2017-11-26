@@ -13,7 +13,7 @@ protocol openCalendar {
     func nextPressed()
     func backBtnPressed()
 }
-
+   // Instant = On Demand
 class scheduleCalendar: UITableViewCell, scheduleScreenDelegate  {
 
     var instantOrScheduleBool : Bool = false
@@ -60,29 +60,20 @@ class scheduleCalendar: UITableViewCell, scheduleScreenDelegate  {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        print("AwakefroNib")
-        print(UserDefaults.standard.object(forKey: "Instant"))
-        
+        let ud = UserDefaults.standard
         instantBtn.layer.cornerRadius = 10
         scheduledBtn.layer.cornerRadius = 10
         backgroundLabel.layer.cornerRadius = 15
-        
-        if((UserDefaults.standard.object(forKey: "Instant") as! String!) == "Selected"){
-            
-            instantBtn.layer.borderWidth = 2.0
-            instantBtn.layer.borderColor = UIColor.black.cgColor
-            
-            
+        if let onDemand = ud.bool(forKey: "isOnDemand") as? Bool{
+            if onDemand {
+                instantBtn.layer.borderWidth = 2.0
+                instantBtn.layer.borderColor = UIColor.black.cgColor
+            } else {
+                scheduledBtn.layer.borderWidth = 2.0
+                scheduledBtn.layer.borderColor = UIColor.black.cgColor
+            }
         }
-        
-        if((UserDefaults.standard.object(forKey: "Scheduled") as! String!) == "Selected"){
-            
-            scheduledBtn.layer.borderWidth = 2.0
-            scheduledBtn.layer.borderColor = UIColor.black.cgColor
-            
-            
-        }
-        
+
         nextButton.layer.cornerRadius = 10
         backgroundLabel.layer.masksToBounds = true
         backgroundLabel.layer.cornerRadius = 15
@@ -105,11 +96,7 @@ class scheduleCalendar: UITableViewCell, scheduleScreenDelegate  {
         
         
         delegate?.schedulePressed()
-        
-        
-        
-        
-        
+ 
     }
     
     @IBAction func nextPressedCalendar(_ sender: Any) {
