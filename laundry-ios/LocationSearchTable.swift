@@ -190,16 +190,22 @@ class LocationSearchTable: UITableViewController, closeSearch, CLLocationManager
     }
 
     func useCurrentLocation(){
-        
- 
+        // Hide View
         self.layoverView.isHidden = true
+        
         addressString = currentAddressString
-        print("ADDRESS!!:\(currentAddressString)")
+        
         UserDefaults.standard.set(addressString, forKey: "address")
         
+        // Find placemark & Zoom in
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(addressString) { (placemarks, error) in
+            if let placemark = placemarks?.first as? MKPlacemark {
+                self.handleMapSearchDelegate?.dropPinZoomIn(placemark)
+            }
+        }
         
         delegate1?.currLocPressed(addy: addressString)
-        
         
     }
     

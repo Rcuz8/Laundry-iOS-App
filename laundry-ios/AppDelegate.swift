@@ -20,11 +20,61 @@ import IQKeyboardManagerSwift
 
 let firebase = FIRDatabase.database().reference() // --> This is the FirebaseDatabase variable used throughout the rest of the application
 
+var stripe_customer_id: String?
+
+var firebaseId: String? {
+    get {
+        if let id = FIRAuth.auth()?.currentUser?.uid {
+            return id
+        } else { return nil }
+    }
+}
+
+var firebaseUser: FIRUser? {
+    get {
+        if let user = FIRAuth.auth()?.currentUser {
+            return user
+        } else { return nil }
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
 
     var window: UIWindow?
 
+    /**
+     Fill in your Stripe publishable key here. This can be either your
+     test or live publishable key. The key should begin with "pk_".
+     
+     You can find your publishable key in the Stripe Dashboard after you've
+     signed up for an account.
+     
+     @see https://dashboard.stripe.com/account/apikeys
+     
+     If you'd like to use this app with https://rocketrides.io (see below),
+     you can use our test publishable key: "pk_test_hnUZptHh36jRUveejCXqRoVu".
+     */
+    private let publishableKey: String = "pk_test_lg4KhXtxw5kCceuSCGEz2k8M"
+    
+    /**
+     Fill in your backend URL here to try out the full payment experience
+     
+     Ex: "http://localhost:3000" if you're running the Node server locally,
+     or "https://rocketrides.io" to try the app using our hosted version.
+     */
+    private let baseURLString: String = ""
+    
+    /**
+     Optionally, fill in your Apple Merchant identifier here to try out the
+     Apple Pay payment experience. We can use the "merchant.xyz" placeholder
+     here when testing in the iOS simulator.
+     
+     @see https://stripe.com/docs/apple-pay/apps
+     */
+    private let appleMerchantIdentifier: String = "merchant.com.lavologistics.clientTransactions"
+
+    
     
     
     override init() {
@@ -35,7 +85,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = self
         
         Stripe.setDefaultPublishableKey("pk_test_lg4KhXtxw5kCceuSCGEz2k8M")
-        STPPaymentConfiguration.shared().publishableKey = "pk_test_lg4KhXtxw5kCceuSCGEz2k8M"
+        STPPaymentConfiguration.shared().publishableKey = publishableKey
+        STPPaymentConfiguration.shared().appleMerchantIdentifier = appleMerchantIdentifier
+        STPPaymentConfiguration.shared().companyName = "Lavo Logistics"
+
+        
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
        self.window!.makeKeyAndVisible()
       //  signOutOfFirebase()
@@ -45,6 +100,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
         
         setupFIrebaseAuthStateListener()
         
+        if let id = firebaseId {
+            let client = Client(id: id)
+            client.getStripeCustomerId(finished: { (cust_id) in
+                if cust_id != nil {
+                    stripe_customer_id = cust_id
+                }
+            })
+        }
         
         
     }
@@ -78,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
                 print("\nAppDelegate: setupFirebaseAuthStateListener:   ✅ : Firebase Sign In   \n")
                     print("AppDelegate: setupFirebaseAuthStateListener: vc initialized")
                         let client = Client(id: user!.uid)
-                        print(client.simpleDescription())
+                   //     print(client.simpleDescription())
                     client.dbFill2 {
                         print("AppDelegate: setupFirebaseAuthStateListener: client finished filling")
                         if client.valid() {
@@ -113,7 +176,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate {
                     let client = Client(id: fireUser!.uid)
                     client.dbFill {
                         print("AppDelegate: sigIn(GID): client finished filling")
-                        print(client.simpleDescription())
+                   //     print(client.simpleDescription())
                         if client.valid() {
                             self.toMain()
                         } else { self.requestInfo() }

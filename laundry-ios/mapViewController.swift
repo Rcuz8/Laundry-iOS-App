@@ -14,7 +14,7 @@ import Firebase
 import IQKeyboardManagerSwift
 import FSCalendar
 import CoreLocation
-
+import SCLAlertView
 
 protocol clearDataAfterLetsGetWashingGetsPressed {
     
@@ -94,7 +94,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     
     //landing/map page
     var searchBarPlaceHolder : UIView!
-    @IBOutlet weak var getWashing: UIButton!
+    var getWashing: UIButton!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     
@@ -145,49 +145,14 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //type of order cell
-        SavedStates.set(nil, forKey: "StandardOrExpress")
+        UserDefaults.standard.removeAll()
         
-        SavedStates.set(nil, forKey: "isLaundry")
-        
-        
-        print("OJOJOJOJOK")
-        //drycleaning cell
-        
-        SavedStates.set(0, forKey: "genderOptions")
-        SavedStates.set(0, forKey: "numberOfShirts")
-        SavedStates.set(0, forKey: "numberOfPants")
-        SavedStates.set(0, forKey: "numberOfSuits")
-        SavedStates.set(0, forKey: "numberOfJackets")
-        
-        //laundry
-        SavedStates.set(0, forKey: "numberOfBags")
-        
-        UserDefaults.standard.set(" ", forKey: "Instant")
         
         
         //  let x = FSCalendar()
         let testVc = schedulePickerViewController()
         testVc.delegate = self
         
-        
-        //special preferences
-        
-        UserDefaults.standard.set(nil, forKey: "specialTableView")
-        
-        //order summary
-        UserDefaults.standard.set(" ", forKey: "termsCheckBox")
-        UserDefaults.standard.set(" ", forKey: "Scheduled")
-        
-        UserDefaults.standard.set(" ", forKey: "getWashing")
-        
-        UserDefaults.standard.set(" ", forKey: "search")
-        
-        UserDefaults.standard.set(" ", forKey: "address")
-        
-        UserDefaults.standard.set(" ", forKey: "preferencesString")
-        
-        UserDefaults.standard.set("", forKey: "t")
         
         
         self.navigationItem.titleView?.isHidden = true
@@ -198,7 +163,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         mapViewSettings()
         addOverlay()
         feedbackScreens()
-        
+        addgetWashing()
         arrayOfCellData = [cellData(cell: 1, height: 400, yCoor: 0), cellData(cell: 2, height: 370, yCoor: 400), cellData(cell: 3, height: 340, yCoor: 770), cellData(cell: 4, height: 462, yCoor: 1110), cellData(cell: 5, height: 450, yCoor: 1572), cellData(cell: 6, height: 230, yCoor: 2022), cellData(cell: 7, height: 525, yCoor: 2352)]
         
         feedbackView.isHidden = true
@@ -235,10 +200,58 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         calendar.layer.borderColor = UIColor.lavoSlightlyDarkBlue.cgColor
         calendar.layer.borderWidth = 2.0
         
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40.0)
+        
+        addMenu()
+        
+    }
+    
+    func addMenu() {
+        let x = partOfScreenWidth_d(percentage: 3)
+        let y = partOfScreenWidth_d(percentage: 12)
+        let w = partOfScreenWidth_d(percentage: 10)
+        let h = partOfScreenWidth_d(percentage: 10)
+        let menu = UIButton(frame: CGRect(x: x, y: y, width: w, height: h))
+        let menuOnTap = UITapGestureRecognizer(target: self, action: #selector(showMenu))
+        let img = UIImage(named: "menu")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        menu.tintColor = UIColor.black
+        menu.setImage(img, for: .normal)
+        menu.addGestureRecognizer(menuOnTap)
+        self.view.addSubview(menu)
+    }
+    
+    func showMenu() {
+        if self.revealViewController() != nil {
+            self.revealViewController().rearViewRevealWidth = 200
+            self.revealViewController().revealToggle(animated: true)
+        }else {
+            print("MapVC: showMenu: Error: cannot find revealVC")
+        }
+    }
+    
+    func addgetWashing() {
+        getWashing = UIButton(type: UIButtonType.system)
+        print(getWashing)
+        print(searchBarPlaceHolder)
+        
+        getWashing.frame = CGRect(x: searchBarPlaceHolder.frame.origin.x+10, y: searchBarPlaceHolder.frame.origin.y+searchBarPlaceHolder.frame.height+10, width: self.view.frame.width-(2*(searchBarPlaceHolder.frame.origin.x+10)), height: 36)
+        getWashing.backgroundColor = UIColor.lavoDarkBlue
+        getWashing.setTitle("Let's Get Washing", for: .normal)
+        getWashing.layer.cornerRadius = 8
+        getWashing.setTitleColor(UIColor.white, for: .normal)
+        
+        getWashing.addTarget(self, action: #selector(LetsGetWashingActionCode), for: .touchUpInside)
+        
+        self.view.addSubview(getWashing)
     }
     
     func mapViewSettings(){
-        
+
         
         
         locationManager.delegate = self as! CLLocationManagerDelegate
@@ -257,8 +270,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         //
         
         //
-        
-        searchBarPlaceHolder = UIView(frame: CGRect(x: 50, y: 20, width: self.view.frame.width-50, height: 36))
+        let searchBarY = CGFloat(partOfScreenHeight_f(percentage: 7))
+        searchBarPlaceHolder = UIView(frame: CGRect(x: self.view.frame.width/6, y: searchBarY , width: self.view.frame.width-(2*(self.view.frame.width/6)), height: 36))
         searchBarPlaceHolder.backgroundColor = UIColor.black
         searchBarPlaceHolder.layer.cornerRadius = 10
         
@@ -290,7 +303,17 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         //setText()
         
+        searchBar.tintColor = UIColor.lavoSlightlyDarkBlue
+        searchBar.barTintColor = UIColor.lavoSlightlyDarkBlue
+        searchBar.layer.borderColor = UIColor.lavoSlightlyDarkBlue.cgColor
         
+        searchbarTextField?.textColor = UIColor.white
+        searchbarTextField?.backgroundColor = UIColor.lavoSlightlyDarkBlue
+        
+        searchBar.setMagnifyingGlassColorTo(color: .white)
+        
+        searchBar.setTextColor(color: UIColor.white)
+        searchBar.setPlaceholderTextColorTo(color: UIColor.white)
         
         
         resultSearchController.hidesNavigationBarDuringPresentation = false
@@ -407,17 +430,26 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
                 cell.jacketSliderValue.text = "\(numJackets)"
             }
             
-            if(defaults.object(forKey: "genderOptions") as! Int! == 1){
-                cell.optionsSegment.selectedSegmentIndex = 0
+            if let options = defaults.object(forKey: "genderOptions") as? Int {
+                switch options {
+                    case 1:
+                        cell.optionsSegment.selectedSegmentIndex = 0
+                    break
+                    case 2:
+                        cell.optionsSegment.selectedSegmentIndex = 1
+                    break
+                    case 3:
+                        cell.optionsSegment.selectedSegmentIndex = 1
+                    break
+                default:
+                    cell.optionsSegment.selectedSegmentIndex = 0
+                }
+                
+                
+            } else {
+                // Error
+                print("mapVC: Cannot find selected segment infex for dry cleaning!")
             }
-            else if(defaults.object(forKey: "genderOptions") as! Int! == 2){
-                cell.optionsSegment.selectedSegmentIndex = 1
-            }
-            else if(defaults.object(forKey: "genderOptions") as! Int! == 3){
-                cell.optionsSegment.selectedSegmentIndex = 2
-            }
-            
-            
             return cell
         }
         else if(arrayOfCellData[indexPath.row].cell == 3){
@@ -484,12 +516,12 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         else{
             
             if let cell = Bundle.main.loadNibNamed("SecondPaymentCell", owner: self, options: nil)?.first as? SecondPaymentCell {
-                print("found second payment cell")
+           //     print("found second payment cell")
                 cell.delegate = self
                 
                 return cell
             }else if let cell = Bundle.main.loadNibNamed("SecondPaymentCell", owner: self, options: nil)?.first {
-                print("found a cell")
+        //        print("found a cell")
                 let cell = SecondPaymentCell()
                 cell.delegate = self
                 return cell
@@ -773,6 +805,10 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
+    func createOrderInDatabase() {
+        
+    }
+    
     // ------------------------ Order -------------------------- //
     func OrderPressed(cell: SecondPaymentCell) {
         
@@ -782,173 +818,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             self.feedbackView.isHidden = false
             
         }
-        
-        let ud = UserDefaults.standard
-        ud.set(" ", forKey: "StandardOrExpress")
-        ud.set(" ", forKey: "dryCleaningCheckBox")
-        
-        if let express = ud.object(forKey: "isExpress") as? Bool, let laundry = ud.object(forKey: "isLaundry") as? Bool, let onDemand = ud.object(forKey: "isOnDemand") as? Bool, let address = ud.object(forKey: "address") as? String, let clientId = FIRAuth.auth()?.currentUser?.uid, let prefs = ud.object(forKey: "specialPreferences") as? String, let price = ud.object(forKey: "price") {
-            
-            // un-geocode address
-            let geoCoder = CLGeocoder()
-            geoCoder.geocodeAddressString(address) { (placemarks, error) in
-                guard
-                    let placemarks = placemarks,
-                    let location = placemarks.first?.location
-                    else {
-                        // handle no location found
-                        return
-                }
-                if let pm = placemarks.first {
-                    if let street = pm.thoroughfare, let city = pm.locality, let state = pm.administrativeArea, let zip = pm.postalCode {
-                        
-                        // Address Info Good
-                        
-                        let h = HomeAddress(aStreetAddress: street, aCity: city, aState: state, aZip: zip, aptNumber: nil)
-                        h.getGeo(finished: { (success) in
-                            if success {
-                                
-                                // Check Ordering Situation
-                                if onDemand {
-                                    let order = Order()
-                                    order.orderID = firebase.childByAutoId().key
-                                    order.clientID = clientId
-                                    order.isOnDemand = onDemand
-                                    order.location = h
-                                    order.isExpress = express
-                                    order.isLaundry = laundry
-                                    order.specialPreferences = prefs
-                                    order.review = OrderReview() // Changed later when order comes back
-                                    order.status = OrderStatus.readyForPickup
-                                    order.price = 15 // Algorithm should be here
-                                 //   order.scheduledTimes
-                                    
-                                } else {
-                                    let order = Order()
-                                    order.orderID = firebase.childByAutoId().key
-                                    order.clientID = clientId
-                                    order.isOnDemand = onDemand
-                                    order.location = h
-                                    order.isExpress = express
-                                    order.isLaundry = laundry
-                                    order.specialPreferences = prefs
-                                    order.review = OrderReview() // Changed later when order comes back
-                                    order.status = OrderStatus.readyForPickup
-                                    order.price = 15 // Algorithm should be here
-                                    var inv = Inventory()
-                                    
-                                    // init inventory
-                                    if laundry {
-                                        if let bags = ud.integer(forKey: "bagCount") as? Int{
-                                            inv.bagCount = bags
-                                        } else { /* Error */ }
-                                    } else {
-                                        if let shirts = ud.integer(forKey: "numShirts") as? Int, let pants = ud.integer(forKey: "numPants") as? Int,  let ties = ud.integer(forKey: "numTies") as? Int, let suits = ud.integer(forKey: "numSuits") as? Int, let jackets = ud.integer(forKey: "numJackets") as? Int, let dresses = ud.integer(forKey: "numDresses") as? Int {
-                                            inv.numSuits = suits; inv.numTies = ties; inv.numShirts = shirts; inv.numPants = pants; inv.numDresses = dresses; inv.numJackets = jackets;
-                                        }
-                                    }
-                                    order.inventory = inv
-                                    
-                                    // init scheduled orders
-                                    if let orderDates = ud.array(forKey: "scheduledOrderDates") as? [String] {
-                                        for date in orderDates {
-                                            order.scheduledTimes?.append(date)
-                                        }
-                                     
-                                    } else if let dayOfWeek = ud.object(forKey: "scheduledDayOfWeek") as? String, let dowTime = ud.object(forKey: "scheduledDayOfWeekTime") as? String {
-                                        order.scheduledTimes?.append("\(dayOfWeek) at \(dowTime)")
-                                    }
-                                
-                                    
-                                    // Create Order
-                                    
-                                    order.findLaundromat(finished: { (success) in
-                                        if success {
-                                            order.dbCreate(finished: { (success) in
-                                                
-                                                if success {
-                                                    
-                                                    // Charge User:
-                                                    //    1. Create User
-                                                    //    2. Add Payment Method
-                                                    //    3. Pay
-                                                    
-                                                    func postCharge(id customerId: String) {
-                                                        let orderPrice = Int(order.price!) * 100 // Converted
-                                                        API.postCharge(customerId: customerId, amount: orderPrice)
-                                                            .then { res -> Void in
-                                                                print("Result")
-                                                                print(res)
-                                                            }.catch { err in print(err.localizedDescription) }
-                                                    }
-                                                    
-                                                    let client = Client(id: clientId)
-                                                    
-                                                    client.getStripeCustomerId(finished: { (stripeIdTokenString) in
-                                                        if let id = stripeIdTokenString {
-                                                            
-                                                            postCharge(id: id)
-                                                            order.moveToOpenOrders()
-                                                        } else {
-                                                            client.dbFill {
-                                                                
-                                                                // We now have Client info
-                                                                if let email = client.email {
-                                                                    API.postNewCustomer(email: email).then { res -> Void in
-                                                                        print("Result")
-                                                                        print(res)
-                                                                        let customerId = res["customerId"] as! String;
-                                                                        self.stripeCustomerId = customerId
-                                                                        // charge
-                                                                        postCharge(id: customerId)
-                                                                        
-                                                                        }.catch { err in print(err.localizedDescription) }
-                                                                    
-                                                                    
-                                                                } else {
-                                                                    // Error
-                                                                }
-                                                                
-                        // Will be Used!!
-                                                                
-                        //                                                    @IBAction func didTapCard(_ sender: Any) {
-                        //                                                        showAddCard()
-                        //                                                    }
-
-                                                                
-                                                                order.moveToOpenOrders()
-                                                                
-                                                                
-                                                            }
-                                                        }
-                                                    })
-                                                    
-                                                    
-                                                } else {
-                                                    // Error
-                                                }
-                                            })
-                                        } else {
-                                            // Error
-                                        }
-                                    })
-                                }
-                            }
-                        })
-                        
-                    } else {
-                        // Error
-                    }
-                
-                } else {
-                    // Error
-                }
-                // Use your location
-            }
-            
-            
-        }
- 
+    
     }
     
     @IBOutlet weak var calendar: FSCalendar!
@@ -990,14 +860,15 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     
     @IBOutlet weak var menuB: UINavigationBar!
     
-    @IBAction func LetsGetWashingAction(_ sender: Any) {
-        
-        print(self.resultSearchController.searchBar.text)
-        LetsGetWashingActionCode()
-    }
     
     func LetsGetWashingActionCode(){
         
+        if let address = UserDefaults.standard.object(forKey: "address") as? String {
+            //
+        } else {
+            SCLAlertView().showError("Oops", subTitle: "Please select a location!")
+            return
+        }
         
         delegate3?.closeSearchField(but: self.getWashing)
         UserDefaults.standard.set("done", forKey: "search")
@@ -1017,6 +888,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         print(UserDefaults.standard.object(forKey: "search"))
         
         
+        
+        
         self.tableView.isHidden = false
         self.tableView.scrollsToTop = true
         
@@ -1030,28 +903,28 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         resultSearchController.dismiss(animated: true, completion: nil)
         
+        let def = UserDefaults.standard
+        def.removeAll()
         
-        
-        
-        
-        SavedStates.set(" ", forKey: "StandardOrExpress")
-        
-        SavedStates.set(" ", forKey: "dryCleaningCheckBox")
-        
-        SavedStates.set(" ", forKey: "isLaundry")
-        
-        
-        //drycleaning cell
-        
-        SavedStates.set(0, forKey: "genderOptions")
-        SavedStates.set(0, forKey: "numberOfShirts")
-        SavedStates.set(0, forKey: "numberOfPants")
-        SavedStates.set(0, forKey: "numberOfSuits")
-        SavedStates.set(0, forKey: "numberOfJackets")
-        
-        //laundry
-        SavedStates.set(0, forKey: "numberOfBags")
-        
+//        
+//        SavedStates.set(" ", forKey: "StandardOrExpress")
+//        
+//        SavedStates.set(" ", forKey: "dryCleaningCheckBox")
+//        
+//        SavedStates.set(" ", forKey: "isLaundry")
+//        
+//        
+//        //drycleaning cell
+//        
+//        SavedStates.set(0, forKey: "genderOptions")
+//        SavedStates.set(0, forKey: "numberOfShirts")
+//        SavedStates.set(0, forKey: "numberOfPants")
+//        SavedStates.set(0, forKey: "numberOfSuits")
+//        SavedStates.set(0, forKey: "numberOfJackets")
+//        
+//        //laundry
+//        SavedStates.set(0, forKey: "numberOfBags")
+//        
         
         //       UserDefaults.standard.set(resultSearchController.searchBar.text, forKey: "address")
         
@@ -1271,6 +1144,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     }
     
     func currLocPressed(addy: String!) {
+        
         resultSearchController.searchBar.text = addy
         LetsGetWashingActionCode()
         
@@ -1456,6 +1330,36 @@ class UnderlinedLabel: UILabel {
             // Add other attributes if needed
             self.attributedText = attributedText
         }
+    }
+}
+
+public extension UISearchBar {
+    
+    public func setTextColor(color: UIColor) {
+        let svs = subviews.flatMap { $0.subviews }
+        guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return }
+        tf.textColor = color
+    }
+}
+
+extension UISearchBar
+{
+    func setPlaceholderTextColorTo(color: UIColor)
+    {
+        let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = color
+        let textFieldInsideSearchBarLabel = textFieldInsideSearchBar!.value(forKey: "placeholderLabel") as? UILabel
+        textFieldInsideSearchBarLabel?.textColor = color
+    }
+    
+    
+    func setMagnifyingGlassColorTo(color: UIColor)
+    {
+        // Search Icon
+        let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
+        let glassIconView = textFieldInsideSearchBar?.leftView as? UIImageView
+        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
+        glassIconView?.tintColor = color
     }
 }
 

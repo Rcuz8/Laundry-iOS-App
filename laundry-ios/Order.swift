@@ -285,12 +285,12 @@ class Order {
     
     // Use to retrieve from database
     
-    func dbFill(finished: @escaping () -> ()) {      print("Filling order info")
+    func dbFill(finished: @escaping () -> ()) {    //  print("Filling order info")
         if let id = orderID {
             firebase.child("Orders").child("allOrders").child(id).observeSingleEvent(of: .value, with: { (snap) in
                 
                 if let snapDict = snap.value as? [String: AnyObject] {
-                    print("Order snapshot: { \n \(snapDict) \n } ")
+                 //   print("Order snapshot: { \n \(snapDict) \n } ")
                     if let laundryBool = snapDict["isLaundry"] as? Bool, let expressBool = snapDict["isExpress"] as? Bool, let specPrefString = snapDict["specialPreferences"] as? String, let onDemandBool = snapDict["isOnDemand"] as? Bool, let clientIDstring = snapDict["clientID"] as? String, let statusString = snapDict["status"] as? String, let laundromatIDstring = snapDict["laundromatID"] as? String, let locationDict = snapDict["location"] as? [String: AnyObject], let reviewDict = snapDict["review"] as? [String: AnyObject], let inventoryDict = snapDict["inventory"] as? [String: AnyObject], let timesDict = snapDict["scheduledTimes"] as? [String: AnyObject], let priceAmount = snapDict["price"] as? Float {
                         
                         

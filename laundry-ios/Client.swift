@@ -187,7 +187,7 @@ class Client {
                                 let orderId = child.key
                                 let order = Order(id: orderId, onDataRetreieved: {})
                                 order.dbFill {
-                                    print("dbFill callback, Appending order")
+                                  //  print("dbFill callback, Appending order")
                                     self.orders!.append(order)
                                     print("With order appended, orders now contains \(self.orders!.count) elements")
                                     self.orderUpdater?.update(with: order)
@@ -263,7 +263,7 @@ class Client {
                             let orderId = child.key
                             let order = Order(id: orderId, onDataRetreieved: {})
                             order.dbFill {
-                                print("dbFill callback, Appending order")
+                            //    print("dbFill callback, Appending order")
                                 self.orders!.append(order)
                                 print("With order appended, orders now contains \(self.orders!.count) elements")
                                 self.orderUpdater?.update(with: order)

@@ -49,7 +49,7 @@ class AddLocationView: UIViewController {
         if let u = FIRAuth.auth()?.currentUser {
         let c = Client(id: u.uid)
             c.dbFill {
-                print(c.simpleDescription())
+           //     print(c.simpleDescription())
             }
         }
     }

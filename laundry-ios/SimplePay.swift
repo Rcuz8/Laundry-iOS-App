@@ -41,6 +41,7 @@ struct API {
 struct Constants {
     static let STRIPE_KEY = "pk_test_lg4KhXtxw5kCceuSCGEz2k8M"
     static let BASE_URL = "http://localhost:1337" //"https://api.myapp.com" // Heroku Generated Link that
+    static let EPHEMERAL_URL = "http://localhost:1337/api/ephemeral_keys"
 }
 
 struct Network {
@@ -56,13 +57,14 @@ struct Network {
      
      */
     static func get(url:String) -> Promise<Dictionary<String,Any>> {
-        
+        print("getting stuff . . .")
         return Promise {fulfill, reject in
             let full_url =  BASE_URL + url
             let headers: HTTPHeaders = [
                 "Accept": "application/json"
             ]
-            Alamofire.request(full_url, method: .get, headers: headers).responseJSON { response in
+            
+            let req = Alamofire.request(full_url, method: .get, headers: headers).responseJSON { response in
                 if let JSON = response.result.value as? Dictionary<String,Any> {
                     print("JSON response received")
                     fulfill(JSON)
@@ -72,6 +74,12 @@ struct Network {
                     reject("No JSON response")
                 }
             }
+            print("- REQUEST INFO: GET -")
+            print(req.request?.mainDocumentURL)
+            print(req.request)
+            print(req.request?.url)
+            print(req.session.configuration.urlCache)
+            print("- END REQUEST INFO: GET -")
         }
     }
     
@@ -84,12 +92,13 @@ struct Network {
      
      */
     static func post(url:String,parameters:Parameters?=nil) -> Promise<Dictionary<String,Any>> {
+            print("posting stuff . . .")
         return Promise {fulfill, reject in
             let full_url = BASE_URL + url
             let headers: HTTPHeaders = [
                 "Accept": "application/json"
             ]
-            Alamofire.request(full_url, method: .post, parameters:parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            let req = Alamofire.request(full_url, method: .post, parameters:parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
                 
                 if let JSON = response.result.value as? Dictionary<String,Any>, response.response?.statusCode == 200 {
                     print("JSON Succesful response received")
@@ -101,6 +110,15 @@ struct Network {
                     reject("Http Error: No JSON response")
                 }
             }
+            
+            print("- REQUEST INFO: POST -")
+            print(req.request?.mainDocumentURL)
+            print(req.request)
+            print(req.request?.url)
+            print(req.session.configuration.urlCache)
+            print("- END REQUEST INFO: POST -")
+
+            
         }
     }
 }
