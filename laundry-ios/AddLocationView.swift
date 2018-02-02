@@ -68,18 +68,25 @@ class AddLocationView: UIViewController {
                 let address = HomeAddress(aStreetAddress: streetTF.text!, aCity: cityTF.text!, aState: activeState, aZip: zipTF.text!, aptNumber: aptNumberTF?.text)
                 address.getGeo(finished: { (success) in
                     let title = self.titleTF.text!
+                    print("getGeo callback . . .")
                     if success {
-                        let newSavedAddress = (name: title, location: address)
-                        if let user = FIRAuth.auth()?.currentUser {
-                            let client = Client(id: user.uid)
-                            client.dbFill {
-                                client.savedLocations?.append(newSavedAddress)
-                                client.saveOnlyLocations(finished: { (saved) in
-                                    if saved { SCLAlertView().showSuccess("Saved", subTitle: "Your new location is saved!") } else {
-                                        SCLAlertView().showError("Oops", subTitle: "We cannot add your new location, Please try again!")
-                                    }
+                        print("getGeo successful . . .")
+                        
+                        let addressStr = "\(address.apartmentNumber) \(address.streetAddress) \(address.city), USA"
+                        
+                        let newSavedAddress = (name: title, location: addressStr)
+                        
+                        let db = UserDB()
+                        
+                        if let user = db.getUser() {
+                            print(" User Found!")
+                            db.getLocations(forUserWithId: user.uid, finished: { (savedLocs, recentLocs) in
+                                var saved = savedLocs
+                                saved.append(newSavedAddress)
+                                db.postSavedLocations(forUserWithId: user.uid, locations: saved, finished: {
+                                    SCLAlertView().showSuccess("Great", subTitle: "New Location Saved!")
                                 })
-                            }
+                            })
                         } else { SCLAlertView().showError("Oops", subTitle: "We cannot find your personal information!") }
                     } else { SCLAlertView().showError("Oops", subTitle: "Please re-check the address information!")
                         print(address.printablejson())

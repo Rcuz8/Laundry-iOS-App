@@ -11,8 +11,6 @@ target 'laundry-ios' do
   	pod 'GooglePlaces'
   	pod 'Alamofire’, '~> 4.4'
 	pod 'Firebase'
-	pod 'FirebaseAnalytics'
-	pod 'Firebase/Analytics'
 	pod ’Firebase/Database'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Storage'

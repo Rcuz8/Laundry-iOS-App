@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import JTAppleCalendar
 import QuartzCore
+import SCLAlertView
 
 class mOrderingPreferencesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -29,16 +30,26 @@ class mOrderingPreferencesViewController: UIViewController, UITableViewDelegate,
     
     var preferenceTitles: [String]?
     var locationTitles: [String]?
-    
-    
+    var savedLocs = [(name: String, location: String)]()
     func fillData() {
+        
+        
         preferenceTitles = [String]()
         locationTitles = [String]()
-        if let user = FIRAuth.auth()?.currentUser { let client = Client(id: user.uid);
+        
+        let db = UserDB()
+        
+        if let user = db.getUser() {
+            db.getLocations(forUserWithId: user.uid, finished: { (saved, recent) in
+                print("From getlocations, found . . . \(saved)")
+                 self.savedLocs = saved
+            })
+        }
+        
+        // Preferences, works!
+        if let user = db.getUser() { let client = Client(id: user.uid);
             client.dbFill {
                 if client.valid() {
-                    let locations = client.savedLocations!
-                    for loc in locations { self.locationTitles?.append(loc.name) }
                     let prefs = client.savedOrderingPreferences!
                     for pref in prefs { self.preferenceTitles?.append(pref.name) }
                     self.savedLocationsTableView.reloadData()
@@ -77,7 +88,7 @@ class mOrderingPreferencesViewController: UIViewController, UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == savedLocationsTableView {
-            return locationTitles!.count
+            return savedLocs.count
         } else {
             return preferenceTitles!.count
         }
@@ -104,7 +115,7 @@ class mOrderingPreferencesViewController: UIViewController, UITableViewDelegate,
         if tableView == savedPreferencesTableView {
             cell.textLabel?.text = preferenceTitles?[indexPath.row]
         } else if tableView == savedLocationsTableView {
-            cell.textLabel?.text = locationTitles?[indexPath.row]
+            cell.textLabel?.text = savedLocs[indexPath.row].name
         }
         cell.contentView.backgroundColor = UIColor.lavoDarkGray
         cell.layer.masksToBounds = true
@@ -113,11 +124,15 @@ class mOrderingPreferencesViewController: UIViewController, UITableViewDelegate,
         cell.viewWithTag(0)?.layer.cornerRadius = 7
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 3
+        cell.selectionStyle  = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        if tableView == savedLocationsTableView {
+            let loc = savedLocs[indexPath.row]
+            SCLAlertView().showInfo(loc.name, subTitle: loc.location)
+        }
     }
     
     

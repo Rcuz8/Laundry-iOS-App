@@ -42,6 +42,7 @@ class SecondPaymentCell: UITableViewCell, /*UITableViewDelegate, UITableViewData
     var selectedPaymentSource: String? // ID
     var paymentContext: STPPaymentContext!
     
+    @IBOutlet weak var totalLbl: UILabel!
     var navigationController: UINavigationController?
     
     // unused
@@ -81,22 +82,25 @@ class SecondPaymentCell: UITableViewCell, /*UITableViewDelegate, UITableViewData
         
         paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
         paymentContext.delegate = self
-        paymentContext.paymentAmount = 100
+      //  paymentContext.paymentAmount = 100
         if let vc = self.parentViewController {
             paymentContext.hostViewController = vc
         }
         
-//        if let topController = UIApplication.shared.keyWindow?.rootViewController{
-//            print("topController being made hostViewController . . .")
-//            
-//            paymentContext.hostViewController = topController
-//        } else {        }
-        
-     ///   presentPaymentContext()
+        if let total = UserDefaults.standard.double(forKey: "orderTotal") as? Double {
+        totalLbl.text = "$\(total)"
+        paymentContext.paymentAmount = Int(total*100)
+        }
     }
     
     func presentPaymentContext() {
-        paymentContext.presentPaymentMethodsViewController()
+        if let host = paymentContext.hostViewController, let total = UserDefaults.standard.double(forKey: "orderTotal") as? Double {
+            paymentContext.paymentAmount = Int(total*100)
+            paymentContext.presentPaymentMethodsViewController()
+        } else {
+            SCLAlertView().showError("Oops", subTitle: "Cannot find your view's host! Please try again later!")
+        }
+        
     }
     
     @IBAction func placeOrder(_ sender: Any) {

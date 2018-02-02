@@ -48,7 +48,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$49.09" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLw-u8-Goc">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLw-u8-Goc">
                         <rect key="frame" x="51" y="123" width="273" height="95"/>
                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="57"/>
                         <nil key="textColor"/>
@@ -111,6 +111,9 @@
                     <constraint firstItem="NIo-B2-0ip" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zg0-TV-uxq"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="totalLbl" destination="RLw-u8-Goc" id="R0H-Zc-WYS"/>
+            </connections>
             <point key="canvasLocation" x="226.5" y="145.5"/>
         </tableViewCell>
     </objects>

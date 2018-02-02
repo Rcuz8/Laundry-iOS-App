@@ -44,7 +44,7 @@ protocol HandleMapSearch: class {
     func dropPinZoomIn(_ placemark:MKPlacemark)
 }
 
-class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITableViewDelegate, UITableViewDataSource, orderTypeDelegate, dryCleaningDelegate, laundryDelegate, specialPreferencesDelegate, orderSummaryDelegate, paymentDelegate, openCalendar, hide_Show_Button, straightToGetWashing, FSCalendarDataSource, FSCalendarDelegate, closed {
+class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITableViewDelegate, UITableViewDataSource, orderTypeDelegate, dryCleaningDelegate, laundryDelegate, specialPreferencesDelegate, orderSummaryDelegate, paymentDelegate, openCalendar, hide_Show_Button, straightToGetWashing, FSCalendarDataSource, FSCalendarDelegate, closed, MenuDisplay {
     
     //saving data user defaults
     
@@ -139,13 +139,15 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     var events = [String]()
     var numberOfEvents = [Int]()
     
+    var menu: UIButton?
+    
     var stripeCustomerId: String!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserDefaults.standard.removeAll()
+     //   UserDefaults.standard.removeAll()
         
         
         
@@ -216,13 +218,24 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         let y = partOfScreenWidth_d(percentage: 12)
         let w = partOfScreenWidth_d(percentage: 10)
         let h = partOfScreenWidth_d(percentage: 10)
-        let menu = UIButton(frame: CGRect(x: x, y: y, width: w, height: h))
+        
+        // make temp menu
+        let temporaryMenu = UIButton(frame: CGRect(x: x, y: y, width: w, height: h))
         let menuOnTap = UITapGestureRecognizer(target: self, action: #selector(showMenu))
         let img = UIImage(named: "menu")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        menu.tintColor = UIColor.black
-        menu.setImage(img, for: .normal)
-        menu.addGestureRecognizer(menuOnTap)
-        self.view.addSubview(menu)
+        temporaryMenu.tintColor = UIColor.black
+        temporaryMenu.setImage(img, for: .normal)
+        temporaryMenu.addGestureRecognizer(menuOnTap)
+        
+        self.menu = temporaryMenu
+        after(0.05) {
+            if let m = self.menu {
+                self.view.addSubview(m)
+            } else {
+                self.view.addSubview(temporaryMenu)
+                print("Not good . .  could not get menu? value")
+            }
+        }
     }
     
     func showMenu() {
@@ -233,6 +246,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             print("MapVC: showMenu: Error: cannot find revealVC")
         }
     }
+    
+   
     
     func addgetWashing() {
         getWashing = UIButton(type: UIButtonType.system)
@@ -259,34 +274,33 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        locationSearchTable.menuDisplay = self
+        locationSearchTable.delegate1 = self
+        let selectLocationVC = storyboard!.instantiateViewController(withIdentifier: "selectLocationViewController2") as! SelectLocationViewController2
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController.searchResultsUpdater = locationSearchTable
-        let searchBar = resultSearchController!.searchBar
+        
+        var searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for places"
+       // locationSearchTable.searchBar = searchBar
+        let font = UIFont(name: "AppleColorEmoji", size: 15)
         
-        
-        
-        //
-        
-        //
         let searchBarY = CGFloat(partOfScreenHeight_f(percentage: 7))
-        searchBarPlaceHolder = UIView(frame: CGRect(x: self.view.frame.width/6, y: searchBarY , width: self.view.frame.width-(2*(self.view.frame.width/6)), height: 36))
+        let searchBarW = CGFloat(partOfScreenWidth_f(percentage: 70))
+        searchBarPlaceHolder = UIView(frame: CGRect(x: self.view.frame.width/6, y: searchBarY ,width: searchBarW, height: 42))
         searchBarPlaceHolder.backgroundColor = UIColor.black
         searchBarPlaceHolder.layer.cornerRadius = 10
         
+        
         self.view.addSubview(searchBarPlaceHolder)
+    //    searchBar = themedSearchBar(searchBar: searchBar, mainColor: UIColor.lavoSlightlyDarkBlue, secondaryColor: UIColor.white)
+     //   searchBar.setTheme(mainColor: UIColor.lavoSlightlyDarkBlue, secondaryColor: UIColor.white)
+        searchBar.frame = CGRect(x: 0, y:0, width: searchBarPlaceHolder.frame.width, height: 42)
         
-        searchBar.frame = CGRect(x: 0, y:0, width: searchBarPlaceHolder.frame.width, height: 36)
-        
-        
-        
-        searchBarPlaceHolder.addSubview(searchBar)
-        //
-        searchBar.layer.masksToBounds = true
-        searchBar.clipsToBounds = true
-        //search bar properties
         definesPresentationContext = true
+        
+      // BEGIN
         
         searchBar.barTintColor = UIColor.white
         searchBar.layer.cornerRadius = 10
@@ -296,12 +310,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         searchBar.layer.masksToBounds = true
         searchBar.clipsToBounds = true
+
         
-        definesPresentationContext = true
-        
-        // searchbarTextField?.textColor = UIColor.
-        
-        //setText()
         
         searchBar.tintColor = UIColor.lavoSlightlyDarkBlue
         searchBar.barTintColor = UIColor.lavoSlightlyDarkBlue
@@ -309,11 +319,26 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         searchbarTextField?.textColor = UIColor.white
         searchbarTextField?.backgroundColor = UIColor.lavoSlightlyDarkBlue
-        
+        searchbarTextField?.font = font
         searchBar.setMagnifyingGlassColorTo(color: .white)
         
         searchBar.setTextColor(color: UIColor.white)
         searchBar.setPlaceholderTextColorTo(color: UIColor.white)
+        
+        searchBarPlaceHolder.addSubview(searchBar)
+        
+        let v: UIView = searchBar.subviews[0] as UIView
+        let subViewsArray = v.subviews
+        
+        for subView: UIView in subViewsArray {
+            if subView.isKind(of: UITextField.self) {
+                subView.tintColor = UIColor.white
+            }
+        }
+
+  //   END
+        
+        // Replaced with:
         
         
         resultSearchController.hidesNavigationBarDuringPresentation = false
@@ -321,8 +346,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
-        
-        
+        selectLocationVC.mapView = mapView
+        selectLocationVC.handleMapSearchDelegate = self
         
         
     }
@@ -643,7 +668,30 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    
+    // toggle whole UI
+    func toggleUI(searchTableShouldBePresented tablePresented: Bool) {
+        print("toggling UI . . .")
+        if tablePresented { // showing view, hide this UI
+            menu?.isHidden = true
+            searchBarPlaceHolder.backgroundColor = UIColor.lavoDarkBlue
+            resultSearchController.searchBar.backgroundColor = UIColor.lavoDarkBlue
+            getWashing.isHidden = true
+            
+            let cancelButtonAttributes: [String: AnyObject] = [NSForegroundColorAttributeName: UIColor.black]
+            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
+            
+        }else{   // hiding view, show this UI
+            menu?.isHidden = false
+            searchBarPlaceHolder.backgroundColor = UIColor.veryVeryLightGray
+            resultSearchController.searchBar.backgroundColor = UIColor.veryVeryLightGray
+            getWashing.isHidden = false
+            
+            let cancelButtonAttributes: [String: AnyObject] = [NSForegroundColorAttributeName: UIColor.white]
+            
+            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
+            
+        }
+    }
     
     @IBAction func contactUsButtonClicked(_ sender: Any) {
         
@@ -869,7 +917,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             SCLAlertView().showError("Oops", subTitle: "Please select a location!")
             return
         }
-        
+        toggleUI(searchTableShouldBePresented: false)
         delegate3?.closeSearchField(but: self.getWashing)
         UserDefaults.standard.set("done", forKey: "search")
         
@@ -904,38 +952,13 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         resultSearchController.dismiss(animated: true, completion: nil)
         
         let def = UserDefaults.standard
-        def.removeAll()
-        
-//        
-//        SavedStates.set(" ", forKey: "StandardOrExpress")
-//        
-//        SavedStates.set(" ", forKey: "dryCleaningCheckBox")
-//        
-//        SavedStates.set(" ", forKey: "isLaundry")
-//        
-//        
-//        //drycleaning cell
-//        
-//        SavedStates.set(0, forKey: "genderOptions")
-//        SavedStates.set(0, forKey: "numberOfShirts")
-//        SavedStates.set(0, forKey: "numberOfPants")
-//        SavedStates.set(0, forKey: "numberOfSuits")
-//        SavedStates.set(0, forKey: "numberOfJackets")
-//        
-//        //laundry
-//        SavedStates.set(0, forKey: "numberOfBags")
-//        
-        
-        //       UserDefaults.standard.set(resultSearchController.searchBar.text, forKey: "address")
-        
+     //   def.removeAll() --> NOT YET
+
         feedbackView.isHidden = true
         reportIssueView.isHidden = true
         
         laundryCheckBoxClicked = false
         drycleaningCheckboxClicked = false
-        
-        //self.view.addSubview(overlayBlur)
-        
         
         
         mapView.addSubview(overlayBlur)
@@ -1144,11 +1167,9 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     }
     
     func currLocPressed(addy: String!) {
-        
+        print("mapVC: pressed current location!")
         resultSearchController.searchBar.text = addy
         LetsGetWashingActionCode()
-        
-        
     }
  
     func addToCalendar(date: Date) {
@@ -1203,8 +1224,55 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
 
     }
 
+    func themedSearchBar(searchBar bar: UISearchBar, mainColor: UIColor, secondaryColor: UIColor) -> UISearchBar {
+        var searchBar = bar
+        searchBar.barTintColor = secondaryColor //s
+        searchBar.layer.cornerRadius = 10
+        searchBar.layer.borderWidth = 1.0
+        searchBar.layer.borderColor = UIColor.black.cgColor // idk
+        var selfTextField = searchBar.value(forKey: "searchField") as? UITextField
+        searchBar.layer.masksToBounds = true
+        searchBar.clipsToBounds = true
+        searchBar.tintColor = mainColor //m
+        searchBar.barTintColor = mainColor //m
+        searchBar.layer.borderColor = mainColor.cgColor //m
+        
+        selfTextField?.textColor = secondaryColor //s
+        selfTextField?.backgroundColor = mainColor //m
+        let font = UIFont(name: "AppleColorEmoji", size: 15)
+        selfTextField?.font = font
+        searchBar.setMagnifyingGlassColorTo(color: secondaryColor) //s
+        searchBar.setTextColor(color: secondaryColor) //s
+        searchBar.setPlaceholderTextColorTo(color: secondaryColor) //s
+        
+        let v: UIView = searchBar.subviews[0] as UIView
+        let subViewsArray = v.subviews
+        
+        for subView: UIView in subViewsArray {
+            if subView.isKind(of: UITextField.self) {
+                subView.tintColor = secondaryColor //s
+            }
+        }
+        
+        return searchBar
+        
+    }
+    
+    
 }
-
+//extension UIViewController {
+//    func changeBackgroundColor(forSearchBar searchBar: UISearchBar, toColor color: UIColor) {
+//        let holder = searchBar.placeholder!
+//        searchBar.placeholder = holder
+//        for subView in searchBar.subviews {
+//            for subViewInSubView in subView.subviews {
+//                if subViewInSubView.isKind(of: UITextField) {
+//                    subViewInSubView.backgroundColor = color
+//                }
+//            }
+//        }
+//    }
+//}
 
 extension mapViewController : CLLocationManagerDelegate {
     
@@ -1361,6 +1429,39 @@ extension UISearchBar
         glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
         glassIconView?.tintColor = color
     }
+
+//    func setTheme(mainColor: UIColor, secondaryColor: UIColor) {
+//        self.barTintColor = secondaryColor //s
+//        self.layer.cornerRadius = 10
+//        self.layer.borderWidth = 1.0
+//        self.layer.borderColor = UIColor.black.cgColor // idk
+//        var selfTextField = self.value(forKey: "searchField") as? UITextField
+//        self.layer.masksToBounds = true
+//        self.clipsToBounds = true
+//        self.tintColor = mainColor //m
+//        self.barTintColor = mainColor //m
+//        self.layer.borderColor = mainColor.cgColor //m
+//        
+////        selfTextField?.textColor = secondaryColor //s
+////        selfTextField?.backgroundColor = mainColor //m
+////        let font = UIFont(name: "AppleColorEmoji", size: 15)
+////        selfTextField?.font = font
+////        self.setMagnifyingGlassColorTo(color: secondaryColor) //s
+////        self.setTextColor(color: secondaryColor) //s
+////        self.setPlaceholderTextColorTo(color: secondaryColor) //s
+////        
+////        let v: UIView = self.subviews[0] as UIView
+////        let subViewsArray = v.subviews
+////        
+////        for subView: UIView in subViewsArray {
+////            if subView.isKind(of: UITextField.self) {
+////                subView.tintColor = secondaryColor //s
+////            }
+////        }
+
+        
+    
+    
 }
 
 

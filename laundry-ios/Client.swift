@@ -41,6 +41,8 @@ class Client {
     
     var savedOrderingPreferences: [(name: String, preferences: String)]? // (Name, Order Preferences)
     
+    //var savedLocations:
+    
     var orders: [Order]?
     
     var profilePicture: UIImage?
@@ -74,7 +76,7 @@ class Client {
         get {
             if savedLocations!.count > 0 {
                 var bigJson: JSON = [
-                    savedLocations![0].name: savedLocations![0].location.json(),
+                    savedLocations![0].name: savedLocations![0].location,
                     ]
                 for location in savedLocations! {
                     bigJson[location.name] = location.location.json()!
@@ -337,10 +339,13 @@ class Client {
     
     func saveOnlyLocations(finished: @escaping (_ success: Bool) -> ()) {
         if let uid = self.id, savedOrderingPreferences != nil {
+            let addressList = ""
             firebase.child("Users").child(uid).child("clientInfo").child("savedLocations").setValue(convertedSavedLocations?.dictionaryObject)
             finished(true)
         } else { finished(false) }
     }
+    
+    
     
     func createClientCredentials(withPassword password: String, finished: @escaping (_ success: Bool, _ user: FIRUser?) -> ()) {
             FIRAuth.auth()?.createUser(withEmail: self.email!, password: password, completion: { (fUser: FIRUser?, error) in
@@ -547,12 +552,233 @@ class Client {
 }
 
 
+struct UserDB {
+    
+    var firebase = FIRDatabase.database().reference().child("Users")
+    func getUser() -> FIRUser? {
+        return FIRAuth.auth()?.currentUser
+    }
+    
+    func postUserInformation(user: FIRUser, info: String, type: PersonalInfoType, completion: @escaping FIRUserProfileChangeCallback) {
+        let id = user.uid
+        let ref = firebase.child(id).child("clientInfo").child(type.toString())
+        print("Posting user information . . .")
+        print("URL: \(ref.url)")
+        print("Info: \(info)")
+        print("ID: \(id)")
+        firebase.child(id).child("clientInfo").child(type.toString()).setValue(info)
+        if type == .email {
+            user.updateEmail(info, completion: completion)
+        } else { completion(nil) }
+    }
+    
+    func postSavedLocations(forUserWithId id: String, locations: [(name: String, location: String)],finished: @escaping () -> ()) {
+        let locationJson = convert(locations: locations)
+         firebase.child("Users").child(id).child("clientInfo").child("savedLocations").setValue(locationJson.dictionaryObject!)
+    }
+    
+    func postRecentLocations(forUserWithId id: String, addresses: [String],finished: @escaping () -> ()) {
+        let locationJson = convert(addresses: addresses)
+        firebase.child("Users").child(id).child("clientInfo").child("savedLocations").setValue(locationJson.dictionaryObject!)
+    }
+    
+    // Get Locations (Saved & Recent)
+    func getLocations(forUserWithId id: String, finished: @escaping (_ savedLocations: [(name: String, location: String)], _ recentLocations: [String]) -> ()) {
+        
+        var savedLocations = [(name: String, location: String)]()
+        var recentLocations = [String]()
+        
+        func finish() {
+            finished(savedLocations, recentLocations)
+        }
+        
+        func findRecents() {
+            // Find Recent Locations
+            firebase.child(id).child("clientInfo").child("recentLocations").observeSingleEvent(of: .value, with: { (snap) in
+                if let locations = snap.value as? [String: AnyObject] {
+                    for location in locations {
+                        if let loc = location.value as? String {
+                            recentLocations.append(loc)
+                        }
+                    }
+                    finish()
+                } else {
+                    finish()
+                }
+                
+            })
+        }
+        
+        func findSaved() {
+            // Find SavedLocations
+            firebase.child(id).child("clientInfo").child("savedLocations").observeSingleEvent(of: .value, with: { (snap) in
+                // If Good, receive data & proceed to recents. else just proceed
+                if let locations = snap.value as? [String: AnyObject] {
+                    for location in locations {
+                        let name = location.key;
+                        if let loc = location.value as? String {
+                            savedLocations.append((name: name, location: loc))
+                        }
+                        
+                    }
+                    findRecents()
+                } else {
+                    // Just Proceed without it
+                    findRecents()
+                }
+                
+            })
+        }
+        
+        func findLocations() {
+            findSaved()
+        }
+        
+        // Let's find the locations
+        findLocations()
+        
+    }
+    
+    
+    
+    // Profile Picture stuff
+    
+    private let firebaseImages = FIRStorage.storage().reference().child("Images")
+    
+    func getProfilePicture(forClient clientId: String, finished: @escaping (_ success: Bool,_ picture: UIImage?) -> ()) {
+        
+        let userPhotoLocation = self.firebaseImages.child("Users").child(clientId).child("profilePicture.jpg")
+        
+        userPhotoLocation.downloadURL { url, error in
+            
+            if let error = error { finished(false, nil) }// Handle any errors
+            else {
+                
+                let downloadString = "\(url!)"
+                self.downloadImage(withURLstring: downloadString, finished: { (success, image) in
+                    if success {
+                        print("successful downlaod!")
+                    } else {
+                        print("Unsuccessful downlaod!")
+                    }
+                    finished(success, image)
+                    
+                })
+                
+            }}
+    }
+    
+    func downloadImage(withURLstring string: String, finished: @escaping (_ success: Bool, _ image: UIImage?) -> ()) {
+        
+        if let url = URL(string: string) {
+            let data: Data = NSData(contentsOf: url) as! Data
+            if let image = UIImage(data: data) {
+                finished(true, image)
+            } else {
+                print("downloadImage: can't create image")
+                finished(false, nil)
+            }
+        } else {
+            print("downloadImage: can't create URL")
+            finished(false, nil)
+        }
+        
+    }
+    
+    func store(profilePicture picture: UIImage, forUser user: FIRUser) {
+        let userPhotoLocation = self.firebaseImages.child("Users").child(user.uid).child("profilePicture.jpg")
+        
+        if let data = UIImagePNGRepresentation(picture) as Data? {
+            let up = userPhotoLocation.put(data, metadata: nil, completion: { (meta, error) in
+                if error != nil {
+                    // Error
+                } else {
+                    let metadata = meta!
+                    // Metadata contains file metadata such as size, content-type, and download URL.
+                    let downloadURL = metadata.downloadURL()
+                    let downloadURLstring = downloadURL?.absoluteString
+                    self.firebase.child(user.uid).child("profilePicture").child("downloadURL").setValue(downloadURLstring)
+                }
+            })
+            
+        } else {
+            print("Could not initialize Data")
+        }
+    }
+    
+    // End Profile Picture Stuff
+    
+    func convert(locations: [(name: String, location: String)]) -> JSON {
+            var bigJson: JSON = [
+                locations[0].name: locations[0].location,
+            ]
+            for location in locations {
+                bigJson[location.name].string = location.location
+            }
+            return bigJson
+    }
+    
+    func convert(addresses: [String]) -> JSON {
+        
+        var locations = [(name: String, location: String)]()
+        // Fill
+        var index = 0
+        while index < addresses.count {
+            let location: (name: String, location: String) = (firebase.childByAutoId().key, addresses[index])
+            locations.append(location)
+            index+=1
+        }
+        
+        return convert(locations: locations)
+    }
+
+    
+    
+    
+}
 
 
+extension UITableViewController {
+    
+    func registerTableView(reuseIdentifier: String) {
+        self.tableView.register(GenericCell.self, forCellReuseIdentifier: reuseIdentifier)
+    }
+    
+}
+
+extension UIFont {
+    
+    func bangla(size: CGFloat) -> UIFont {
+        return UIFont(name: "Bangla Sangam MN", size: size)!
+    }
+    
+}
 
 
+enum PersonalInfoType {
+    case name, email, phoneNumber;
+    
+    func toString() -> String {
+        switch self {
+        case .name:
+            return String().name; break;
+        case .email:
+            return String().email; break;
+        case .phoneNumber:
+            return String().phoneNumber; break;
+        default: return ""; break;
+        }
+    }
+    
+}
 
+extension String {
+    
+    var name: String {  get {  return "name" } }
+    var email: String { get { return "email" } }
+    var phoneNumber: String { get { return "phoneNumber" } }
 
+}
 
 
 
