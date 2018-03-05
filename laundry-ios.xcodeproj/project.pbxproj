@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		941E850B1F510FA200DF99B1 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E850A1F510FA200DF99B1 /* AddLocationView.swift */; };
-		94231A751F6A2A210007DCB4 /* savedCreditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94231A731F6A2A210007DCB4 /* savedCreditCardCell.swift */; };
-		94231A761F6A2A210007DCB4 /* savedCreditCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94231A741F6A2A210007DCB4 /* savedCreditCardCell.xib */; };
 		94231A781F6A2C9D0007DCB4 /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94231A771F6A2C9D0007DCB4 /* Stripe.framework */; };
 		94249E111F335C2500A5D223 /* mProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94249E101F335C2500A5D223 /* mProfileViewController.swift */; };
 		94249E131F335C6600A5D223 /* mOrderingPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94249E121F335C6600A5D223 /* mOrderingPreferencesViewController.swift */; };
@@ -25,8 +23,6 @@
 		9435B0AA1F38D0C4005A199D /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9435B0A91F38D0C4005A199D /* LocationViewController.swift */; };
 		9435B0AC1F395931005A199D /* FirstLastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9435B0AB1F395931005A199D /* FirstLastViewController.swift */; };
 		943742E21FEDA2D700168EE9 /* SelectLocationViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943742E11FEDA2D700168EE9 /* SelectLocationViewController2.swift */; };
-		9438FCA71FC6000200D527BB /* SecondPaymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9438FCA51FC6000200D527BB /* SecondPaymentCell.swift */; };
-		9438FCA81FC6000200D527BB /* SecondPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9438FCA61FC6000200D527BB /* SecondPaymentCell.xib */; };
 		9438FCAA1FC6A35E00D527BB /* MainAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9438FCA91FC6A35E00D527BB /* MainAPI.swift */; };
 		943F4B221F3BEF2700C140A4 /* PromotionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943F4B211F3BEF2700C140A4 /* PromotionCell.swift */; };
 		943F4B241F3BFD6300C140A4 /* AddPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943F4B231F3BFD6300C140A4 /* AddPreferenceView.swift */; };
@@ -43,24 +39,7 @@
 		943F4B7B1F43BFE700C140A4 /* mAuthPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943F4B7A1F43BFE700C140A4 /* mAuthPasswordViewController.swift */; };
 		943FA88E1F16B25100C50DCC /* Washer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943FA88D1F16B25100C50DCC /* Washer.swift */; };
 		943FA8901F16B32200C50DCC /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943FA88F1F16B32200C50DCC /* Organization.swift */; };
-		9454F2F21F47D20900AB388B /* laundryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454F2F01F47D20900AB388B /* laundryCell.swift */; };
-		9454F2F31F47D20900AB388B /* laundryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9454F2F11F47D20900AB388B /* laundryCell.xib */; };
-		9454F2F61F47D22100AB388B /* orderSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454F2F41F47D22100AB388B /* orderSummaryCell.swift */; };
-		9454F2F71F47D22100AB388B /* orderSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9454F2F51F47D22100AB388B /* orderSummaryCell.xib */; };
-		9454F2FC1F47D27900AB388B /* orderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454F2FA1F47D27900AB388B /* orderType.swift */; };
-		9454F2FD1F47D27900AB388B /* orderType.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9454F2FB1F47D27900AB388B /* orderType.xib */; };
-		9454F3001F47D29100AB388B /* paymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454F2FE1F47D29100AB388B /* paymentCell.swift */; };
-		9454F3011F47D29100AB388B /* paymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9454F2FF1F47D29100AB388B /* paymentCell.xib */; };
-		9454F3041F47D2A800AB388B /* specialPreferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454F3021F47D2A800AB388B /* specialPreferencesCell.swift */; };
-		9454F3051F47D2A800AB388B /* specialPreferencesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9454F3031F47D2A800AB388B /* specialPreferencesCell.xib */; };
-		9454F30E1F47D37600AB388B /* NestedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454F30C1F47D37600AB388B /* NestedTableViewCell.swift */; };
-		9454F30F1F47D37600AB388B /* NestedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9454F30D1F47D37600AB388B /* NestedTableViewCell.xib */; };
-		9454F3121F47D3A600AB388B /* scheduleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454F3101F47D3A600AB388B /* scheduleCalendar.swift */; };
-		9454F3131F47D3A600AB388B /* scheduleCalendar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9454F3111F47D3A600AB388B /* scheduleCalendar.xib */; };
-		9454F3161F47DE0E00AB388B /* dryCleaningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454F3141F47DE0E00AB388B /* dryCleaningCell.swift */; };
-		9454F3171F47DE0E00AB388B /* dryCleaningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9454F3151F47DE0E00AB388B /* dryCleaningCell.xib */; };
 		9456A36F1FC4C5AD003A254F /* SimplePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456A36E1FC4C5AD003A254F /* SimplePay.swift */; };
-		9470ACAC1F4E653E00BCF979 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9470ACAB1F4E653E00BCF979 /* CosmosDistrib.swift */; };
 		9472ACA41EFE11D1002D6B75 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472ACA31EFE11D1002D6B75 /* CoreLocation.framework */; };
 		9472ACB81EFE9F8C002D6B75 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9472ACB71EFE9F8C002D6B75 /* Client.swift */; };
 		947E14CA1FB621D200CD4443 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 947E14C91FB621D200CD4443 /* GoogleService-Info.plist */; };
@@ -78,6 +57,28 @@
 		F43418861F476C8000BB1440 /* schedulePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43418851F476C8000BB1440 /* schedulePickerViewController.swift */; };
 		F47412D01ED5414C00D27624 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47412CF1ED5414C00D27624 /* PhoneNumberViewController.swift */; };
 		F48AB18C1ECFAF9E00B7BEB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AB18B1ECFAF9E00B7BEB2 /* LoginViewController.swift */; };
+		F48ACB772033B40B00B2BC07 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB762033B40B00B2BC07 /* CosmosDistrib.swift */; };
+		F48ACB792033B43500B2BC07 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB782033B43500B2BC07 /* PaymentViewController.swift */; };
+		F48ACB8F2033B47D00B2BC07 /* laundryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB7A2033B47D00B2BC07 /* laundryCell.swift */; };
+		F48ACB902033B47D00B2BC07 /* laundryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB7B2033B47D00B2BC07 /* laundryCell.xib */; };
+		F48ACB912033B47D00B2BC07 /* orderSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB7C2033B47D00B2BC07 /* orderSummaryCell.swift */; };
+		F48ACB922033B47D00B2BC07 /* orderSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB7D2033B47D00B2BC07 /* orderSummaryCell.xib */; };
+		F48ACB932033B47D00B2BC07 /* orderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB7E2033B47D00B2BC07 /* orderType.swift */; };
+		F48ACB942033B47D00B2BC07 /* orderType.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB7F2033B47D00B2BC07 /* orderType.xib */; };
+		F48ACB952033B47D00B2BC07 /* paymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB802033B47D00B2BC07 /* paymentCell.swift */; };
+		F48ACB962033B47D00B2BC07 /* paymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB812033B47D00B2BC07 /* paymentCell.xib */; };
+		F48ACB972033B47D00B2BC07 /* specialPreferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB822033B47D00B2BC07 /* specialPreferencesCell.swift */; };
+		F48ACB982033B47D00B2BC07 /* specialPreferencesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB832033B47D00B2BC07 /* specialPreferencesCell.xib */; };
+		F48ACB992033B47D00B2BC07 /* NestedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB842033B47D00B2BC07 /* NestedTableViewCell.swift */; };
+		F48ACB9A2033B47D00B2BC07 /* NestedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB852033B47D00B2BC07 /* NestedTableViewCell.xib */; };
+		F48ACB9B2033B47D00B2BC07 /* scheduleCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB862033B47D00B2BC07 /* scheduleCalendar.swift */; };
+		F48ACB9C2033B47D00B2BC07 /* scheduleCalendar.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB872033B47D00B2BC07 /* scheduleCalendar.xib */; };
+		F48ACB9D2033B47D00B2BC07 /* dryCleaningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB882033B47D00B2BC07 /* dryCleaningCell.swift */; };
+		F48ACB9E2033B47D00B2BC07 /* dryCleaningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB892033B47D00B2BC07 /* dryCleaningCell.xib */; };
+		F48ACB9F2033B47D00B2BC07 /* savedCreditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB8A2033B47D00B2BC07 /* savedCreditCardCell.swift */; };
+		F48ACBA02033B47D00B2BC07 /* savedCreditCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB8B2033B47D00B2BC07 /* savedCreditCardCell.xib */; };
+		F48ACBA12033B47D00B2BC07 /* SecondPaymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48ACB8C2033B47D00B2BC07 /* SecondPaymentCell.swift */; };
+		F48ACBA22033B47D00B2BC07 /* SecondPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48ACB8D2033B47D00B2BC07 /* SecondPaymentCell.xib */; };
 		F498CEC21ED1614F003516A8 /* SampleTimetable_1-2.json in Resources */ = {isa = PBXBuildFile; fileRef = F498CEC11ED1614F003516A8 /* SampleTimetable_1-2.json */; };
 		F4A8CAAD1EDA1DAA00BDCEE9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A8CAAB1EDA1DAA00BDCEE9 /* SWRevealViewController.m */; };
 		F4A8CAB31EDA29C300BDCEE9 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A8CAB21EDA29C300BDCEE9 /* PayViewController.swift */; };
@@ -115,8 +116,6 @@
 		611C3773E37BD329873B08C7 /* Pods-laundry-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-laundry-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-laundry-ios/Pods-laundry-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		916427ED08665B5DA5F792F9 /* Pods-laundry-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-laundry-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-laundry-ios/Pods-laundry-ios.release.xcconfig"; sourceTree = "<group>"; };
 		941E850A1F510FA200DF99B1 /* AddLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
-		94231A731F6A2A210007DCB4 /* savedCreditCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = savedCreditCardCell.swift; sourceTree = "<group>"; };
-		94231A741F6A2A210007DCB4 /* savedCreditCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = savedCreditCardCell.xib; sourceTree = "<group>"; };
 		94231A771F6A2C9D0007DCB4 /* Stripe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stripe.framework; path = "Pods/../build/Release-iphoneos/Stripe/Stripe.framework"; sourceTree = "<group>"; };
 		94249E101F335C2500A5D223 /* mProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mProfileViewController.swift; sourceTree = "<group>"; };
 		94249E121F335C6600A5D223 /* mOrderingPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mOrderingPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -133,8 +132,6 @@
 		9435B0AB1F395931005A199D /* FirstLastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLastViewController.swift; sourceTree = "<group>"; };
 		9435B0AF1F39FF3F005A199D /* laundry-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "laundry-ios.entitlements"; sourceTree = "<group>"; };
 		943742E11FEDA2D700168EE9 /* SelectLocationViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController2.swift; sourceTree = "<group>"; };
-		9438FCA51FC6000200D527BB /* SecondPaymentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondPaymentCell.swift; sourceTree = "<group>"; };
-		9438FCA61FC6000200D527BB /* SecondPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondPaymentCell.xib; sourceTree = "<group>"; };
 		9438FCA91FC6A35E00D527BB /* MainAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAPI.swift; sourceTree = "<group>"; };
 		943F4B211F3BEF2700C140A4 /* PromotionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionCell.swift; sourceTree = "<group>"; };
 		943F4B231F3BFD6300C140A4 /* AddPreferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPreferenceView.swift; sourceTree = "<group>"; };
@@ -151,24 +148,7 @@
 		943F4B7A1F43BFE700C140A4 /* mAuthPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mAuthPasswordViewController.swift; sourceTree = "<group>"; };
 		943FA88D1F16B25100C50DCC /* Washer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Washer.swift; sourceTree = "<group>"; };
 		943FA88F1F16B32200C50DCC /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
-		9454F2F01F47D20900AB388B /* laundryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = laundryCell.swift; sourceTree = "<group>"; };
-		9454F2F11F47D20900AB388B /* laundryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = laundryCell.xib; sourceTree = "<group>"; };
-		9454F2F41F47D22100AB388B /* orderSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = orderSummaryCell.swift; sourceTree = "<group>"; };
-		9454F2F51F47D22100AB388B /* orderSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = orderSummaryCell.xib; sourceTree = "<group>"; };
-		9454F2FA1F47D27900AB388B /* orderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = orderType.swift; sourceTree = "<group>"; };
-		9454F2FB1F47D27900AB388B /* orderType.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = orderType.xib; sourceTree = "<group>"; };
-		9454F2FE1F47D29100AB388B /* paymentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = paymentCell.swift; sourceTree = "<group>"; };
-		9454F2FF1F47D29100AB388B /* paymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = paymentCell.xib; sourceTree = "<group>"; };
-		9454F3021F47D2A800AB388B /* specialPreferencesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = specialPreferencesCell.swift; sourceTree = "<group>"; };
-		9454F3031F47D2A800AB388B /* specialPreferencesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = specialPreferencesCell.xib; sourceTree = "<group>"; };
-		9454F30C1F47D37600AB388B /* NestedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedTableViewCell.swift; sourceTree = "<group>"; };
-		9454F30D1F47D37600AB388B /* NestedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NestedTableViewCell.xib; sourceTree = "<group>"; };
-		9454F3101F47D3A600AB388B /* scheduleCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scheduleCalendar.swift; sourceTree = "<group>"; };
-		9454F3111F47D3A600AB388B /* scheduleCalendar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = scheduleCalendar.xib; sourceTree = "<group>"; };
-		9454F3141F47DE0E00AB388B /* dryCleaningCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dryCleaningCell.swift; sourceTree = "<group>"; };
-		9454F3151F47DE0E00AB388B /* dryCleaningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = dryCleaningCell.xib; sourceTree = "<group>"; };
 		9456A36E1FC4C5AD003A254F /* SimplePay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimplePay.swift; sourceTree = "<group>"; };
-		9470ACAB1F4E653E00BCF979 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CosmosDistrib.swift; path = ../../CosmosDistrib.swift; sourceTree = "<group>"; };
 		9472ACA31EFE11D1002D6B75 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9472ACB71EFE9F8C002D6B75 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		947E14C91FB621D200CD4443 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -187,6 +167,28 @@
 		F43418851F476C8000BB1440 /* schedulePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = schedulePickerViewController.swift; sourceTree = "<group>"; };
 		F47412CF1ED5414C00D27624 /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
 		F48AB18B1ECFAF9E00B7BEB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F48ACB762033B40B00B2BC07 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
+		F48ACB782033B43500B2BC07 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		F48ACB7A2033B47D00B2BC07 /* laundryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = laundryCell.swift; sourceTree = "<group>"; };
+		F48ACB7B2033B47D00B2BC07 /* laundryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = laundryCell.xib; sourceTree = "<group>"; };
+		F48ACB7C2033B47D00B2BC07 /* orderSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = orderSummaryCell.swift; sourceTree = "<group>"; };
+		F48ACB7D2033B47D00B2BC07 /* orderSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = orderSummaryCell.xib; sourceTree = "<group>"; };
+		F48ACB7E2033B47D00B2BC07 /* orderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = orderType.swift; sourceTree = "<group>"; };
+		F48ACB7F2033B47D00B2BC07 /* orderType.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = orderType.xib; sourceTree = "<group>"; };
+		F48ACB802033B47D00B2BC07 /* paymentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = paymentCell.swift; sourceTree = "<group>"; };
+		F48ACB812033B47D00B2BC07 /* paymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = paymentCell.xib; sourceTree = "<group>"; };
+		F48ACB822033B47D00B2BC07 /* specialPreferencesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = specialPreferencesCell.swift; sourceTree = "<group>"; };
+		F48ACB832033B47D00B2BC07 /* specialPreferencesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = specialPreferencesCell.xib; sourceTree = "<group>"; };
+		F48ACB842033B47D00B2BC07 /* NestedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedTableViewCell.swift; sourceTree = "<group>"; };
+		F48ACB852033B47D00B2BC07 /* NestedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NestedTableViewCell.xib; sourceTree = "<group>"; };
+		F48ACB862033B47D00B2BC07 /* scheduleCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scheduleCalendar.swift; sourceTree = "<group>"; };
+		F48ACB872033B47D00B2BC07 /* scheduleCalendar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = scheduleCalendar.xib; sourceTree = "<group>"; };
+		F48ACB882033B47D00B2BC07 /* dryCleaningCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dryCleaningCell.swift; sourceTree = "<group>"; };
+		F48ACB892033B47D00B2BC07 /* dryCleaningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = dryCleaningCell.xib; sourceTree = "<group>"; };
+		F48ACB8A2033B47D00B2BC07 /* savedCreditCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = savedCreditCardCell.swift; sourceTree = "<group>"; };
+		F48ACB8B2033B47D00B2BC07 /* savedCreditCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = savedCreditCardCell.xib; sourceTree = "<group>"; };
+		F48ACB8C2033B47D00B2BC07 /* SecondPaymentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondPaymentCell.swift; sourceTree = "<group>"; };
+		F48ACB8D2033B47D00B2BC07 /* SecondPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondPaymentCell.xib; sourceTree = "<group>"; };
 		F498CEC11ED1614F003516A8 /* SampleTimetable_1-2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "SampleTimetable_1-2.json"; path = "laundry-ios/SampleTimetable_1-2.json"; sourceTree = "<group>"; };
 		F4A8CAAB1EDA1DAA00BDCEE9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		F4A8CAAC1EDA1DAA00BDCEE9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -334,7 +336,7 @@
 		9435B09E1F379617005A199D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				9454F2DB1F47CE5000AB388B /* Ordering Cells */,
+				F48ACB8E2033B47D00B2BC07 /* Ordering Cells */,
 				94D901661F135386001987B1 /* Table View Cells */,
 				94249E201F33835800A5D223 /* Calendar Cells */,
 			);
@@ -344,7 +346,7 @@
 		9435B09F1F3796BC005A199D /* Additional */ = {
 			isa = PBXGroup;
 			children = (
-				9470ACAB1F4E653E00BCF979 /* CosmosDistrib.swift */,
+				F48ACB762033B40B00B2BC07 /* CosmosDistrib.swift */,
 				94BBC2A31EFF5BA40066FF82 /* Info.plist */,
 				947E14C91FB621D200CD4443 /* GoogleService-Info.plist */,
 				F4D19E8D1ECE6E9F00950574 /* bridger.h */,
@@ -356,6 +358,7 @@
 		9435B0A01F3798CC005A199D /* Ordering */ = {
 			isa = PBXGroup;
 			children = (
+				F48ACB782033B43500B2BC07 /* PaymentViewController.swift */,
 				9435B0A11F3798FC005A199D /* LocationSearchTable.swift */,
 				9435B0A31F37991A005A199D /* mapViewController.swift */,
 				9435B0A91F38D0C4005A199D /* LocationViewController.swift */,
@@ -373,33 +376,6 @@
 			name = Transitions;
 			sourceTree = "<group>";
 		};
-		9454F2DB1F47CE5000AB388B /* Ordering Cells */ = {
-			isa = PBXGroup;
-			children = (
-				9454F2F01F47D20900AB388B /* laundryCell.swift */,
-				9454F2F11F47D20900AB388B /* laundryCell.xib */,
-				9454F2F41F47D22100AB388B /* orderSummaryCell.swift */,
-				9454F2F51F47D22100AB388B /* orderSummaryCell.xib */,
-				9454F2FA1F47D27900AB388B /* orderType.swift */,
-				9454F2FB1F47D27900AB388B /* orderType.xib */,
-				9454F2FE1F47D29100AB388B /* paymentCell.swift */,
-				9454F2FF1F47D29100AB388B /* paymentCell.xib */,
-				9454F3021F47D2A800AB388B /* specialPreferencesCell.swift */,
-				9454F3031F47D2A800AB388B /* specialPreferencesCell.xib */,
-				9454F30C1F47D37600AB388B /* NestedTableViewCell.swift */,
-				9454F30D1F47D37600AB388B /* NestedTableViewCell.xib */,
-				9454F3101F47D3A600AB388B /* scheduleCalendar.swift */,
-				9454F3111F47D3A600AB388B /* scheduleCalendar.xib */,
-				9454F3141F47DE0E00AB388B /* dryCleaningCell.swift */,
-				9454F3151F47DE0E00AB388B /* dryCleaningCell.xib */,
-				94231A731F6A2A210007DCB4 /* savedCreditCardCell.swift */,
-				94231A741F6A2A210007DCB4 /* savedCreditCardCell.xib */,
-				9438FCA51FC6000200D527BB /* SecondPaymentCell.swift */,
-				9438FCA61FC6000200D527BB /* SecondPaymentCell.xib */,
-			);
-			name = "Ordering Cells";
-			sourceTree = "<group>";
-		};
 		94D901661F135386001987B1 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +385,34 @@
 				943F4B211F3BEF2700C140A4 /* PromotionCell.swift */,
 			);
 			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		F48ACB8E2033B47D00B2BC07 /* Ordering Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F48ACB7A2033B47D00B2BC07 /* laundryCell.swift */,
+				F48ACB7B2033B47D00B2BC07 /* laundryCell.xib */,
+				F48ACB7C2033B47D00B2BC07 /* orderSummaryCell.swift */,
+				F48ACB7D2033B47D00B2BC07 /* orderSummaryCell.xib */,
+				F48ACB7E2033B47D00B2BC07 /* orderType.swift */,
+				F48ACB7F2033B47D00B2BC07 /* orderType.xib */,
+				F48ACB802033B47D00B2BC07 /* paymentCell.swift */,
+				F48ACB812033B47D00B2BC07 /* paymentCell.xib */,
+				F48ACB822033B47D00B2BC07 /* specialPreferencesCell.swift */,
+				F48ACB832033B47D00B2BC07 /* specialPreferencesCell.xib */,
+				F48ACB842033B47D00B2BC07 /* NestedTableViewCell.swift */,
+				F48ACB852033B47D00B2BC07 /* NestedTableViewCell.xib */,
+				F48ACB862033B47D00B2BC07 /* scheduleCalendar.swift */,
+				F48ACB872033B47D00B2BC07 /* scheduleCalendar.xib */,
+				F48ACB882033B47D00B2BC07 /* dryCleaningCell.swift */,
+				F48ACB892033B47D00B2BC07 /* dryCleaningCell.xib */,
+				F48ACB8A2033B47D00B2BC07 /* savedCreditCardCell.swift */,
+				F48ACB8B2033B47D00B2BC07 /* savedCreditCardCell.xib */,
+				F48ACB8C2033B47D00B2BC07 /* SecondPaymentCell.swift */,
+				F48ACB8D2033B47D00B2BC07 /* SecondPaymentCell.xib */,
+			);
+			name = "Ordering Cells";
+			path = "../../../Downloads/lavo-laundry-master/laundry-ios";
 			sourceTree = "<group>";
 		};
 		F68F2A9F1EFD71F2008D2F7D /* Auth */ = {
@@ -559,7 +563,7 @@
 				TargetAttributes = {
 					F6B1341A1EB95BCF00FFB407 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = GLS97SK2AU;
+						DevelopmentTeam = 83CD5EHX7Z;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -607,25 +611,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48ACB9A2033B47D00B2BC07 /* NestedTableViewCell.xib in Resources */,
 				F6B134291EB95BCF00FFB407 /* LaunchScreen.storyboard in Resources */,
+				F48ACB902033B47D00B2BC07 /* laundryCell.xib in Resources */,
 				F6B134261EB95BCF00FFB407 /* Assets.xcassets in Resources */,
 				F68F2A9E1EFD70D8008D2F7D /* Auth.storyboard in Resources */,
+				F48ACB962033B47D00B2BC07 /* paymentCell.xib in Resources */,
+				F48ACB942033B47D00B2BC07 /* orderType.xib in Resources */,
+				F48ACB982033B47D00B2BC07 /* specialPreferencesCell.xib in Resources */,
+				F48ACBA02033B47D00B2BC07 /* savedCreditCardCell.xib in Resources */,
 				F4D423A51ED0F24500C150A1 /* ServerCode in Resources */,
-				9454F2F71F47D22100AB388B /* orderSummaryCell.xib in Resources */,
 				F498CEC21ED1614F003516A8 /* SampleTimetable_1-2.json in Resources */,
 				94BBC2A41EFF5BA40066FF82 /* Info.plist in Resources */,
-				9438FCA81FC6000200D527BB /* SecondPaymentCell.xib in Resources */,
-				9454F3171F47DE0E00AB388B /* dryCleaningCell.xib in Resources */,
-				9454F3011F47D29100AB388B /* paymentCell.xib in Resources */,
-				9454F30F1F47D37600AB388B /* NestedTableViewCell.xib in Resources */,
-				9454F2F31F47D20900AB388B /* laundryCell.xib in Resources */,
-				9454F2FD1F47D27900AB388B /* orderType.xib in Resources */,
+				F48ACB922033B47D00B2BC07 /* orderSummaryCell.xib in Resources */,
+				F48ACB9C2033B47D00B2BC07 /* scheduleCalendar.xib in Resources */,
+				F48ACB9E2033B47D00B2BC07 /* dryCleaningCell.xib in Resources */,
+				F48ACBA22033B47D00B2BC07 /* SecondPaymentCell.xib in Resources */,
 				F4171CBA1ED149E20082B40F /* Prod.csv in Resources */,
 				F6B134241EB95BCF00FFB407 /* Main.storyboard in Resources */,
-				9454F3051F47D2A800AB388B /* specialPreferencesCell.xib in Resources */,
-				94231A761F6A2A210007DCB4 /* savedCreditCardCell.xib in Resources */,
 				947E14CA1FB621D200CD4443 /* GoogleService-Info.plist in Resources */,
-				9454F3131F47D3A600AB388B /* scheduleCalendar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,30 +704,32 @@
 			files = (
 				94D0A6C71F2D7523003171BA /* ClientLoginViewController.swift in Sources */,
 				943FA8901F16B32200C50DCC /* Organization.swift in Sources */,
-				9454F3041F47D2A800AB388B /* specialPreferencesCell.swift in Sources */,
+				F48ACB992033B47D00B2BC07 /* NestedTableViewCell.swift in Sources */,
+				F48ACB772033B40B00B2BC07 /* CosmosDistrib.swift in Sources */,
 				94249E1B1F335D6900A5D223 /* mPromotionsViewController.swift in Sources */,
 				F48AB18C1ECFAF9E00B7BEB2 /* LoginViewController.swift in Sources */,
 				F6B134211EB95BCF00FFB407 /* ViewController.swift in Sources */,
+				F48ACB792033B43500B2BC07 /* PaymentViewController.swift in Sources */,
+				F48ACB9D2033B47D00B2BC07 /* dryCleaningCell.swift in Sources */,
 				94AEBB901F3A5A0800AC63B4 /* ColorExtensions.swift in Sources */,
-				9454F3001F47D29100AB388B /* paymentCell.swift in Sources */,
 				94249E191F335D4C00A5D223 /* mSettingsViewController.swift in Sources */,
 				943742E21FEDA2D700168EE9 /* SelectLocationViewController2.swift in Sources */,
 				94249E111F335C2500A5D223 /* mProfileViewController.swift in Sources */,
 				9435B0A21F3798FC005A199D /* LocationSearchTable.swift in Sources */,
+				F48ACB972033B47D00B2BC07 /* specialPreferencesCell.swift in Sources */,
 				948125F81F5C48070094A682 /* LaunchViewController.swift in Sources */,
 				9472ACB81EFE9F8C002D6B75 /* Client.swift in Sources */,
 				94249E151F335CA200A5D223 /* mOrderHistoryViewController.swift in Sources */,
-				9454F2F21F47D20900AB388B /* laundryCell.swift in Sources */,
 				F4A8CAB31EDA29C300BDCEE9 /* PayViewController.swift in Sources */,
 				94BBC2A01EFF10A80066FF82 /* LoadingViewController.swift in Sources */,
 				94F85C0A1F05826400E4B8A0 /* EmailAndPasswordViewController.swift in Sources */,
 				943F4B301F3DDECC00C140A4 /* PageViewCounter.swift in Sources */,
 				943F4B731F43BF1600C140A4 /* mNameViewController.swift in Sources */,
-				94231A751F6A2A210007DCB4 /* savedCreditCardCell.swift in Sources */,
 				9435B0A41F37991A005A199D /* mapViewController.swift in Sources */,
+				F48ACBA12033B47D00B2BC07 /* SecondPaymentCell.swift in Sources */,
 				F43418861F476C8000BB1440 /* schedulePickerViewController.swift in Sources */,
+				F48ACB952033B47D00B2BC07 /* paymentCell.swift in Sources */,
 				F47412D01ED5414C00D27624 /* PhoneNumberViewController.swift in Sources */,
-				9454F3121F47D3A600AB388B /* scheduleCalendar.swift in Sources */,
 				94249E171F335CC600A5D223 /* mShareWithFriendsViewController.swift in Sources */,
 				9427C39D1FDC6139004C475F /* mSelectLocationViewController.swift in Sources */,
 				F6B1341F1EB95BCF00FFB407 /* AppDelegate.swift in Sources */,
@@ -733,30 +739,29 @@
 				9438FCAA1FC6A35E00D527BB /* MainAPI.swift in Sources */,
 				943F4B321F3F4A1D00C140A4 /* Promotion.swift in Sources */,
 				943FA88E1F16B25100C50DCC /* Washer.swift in Sources */,
-				9454F30E1F47D37600AB388B /* NestedTableViewCell.swift in Sources */,
 				9456A36F1FC4C5AD003A254F /* SimplePay.swift in Sources */,
 				94249E221F33837B00A5D223 /* CalendarCell.swift in Sources */,
 				943F4B2E1F3D506400C140A4 /* Cleaner.swift in Sources */,
+				F48ACB912033B47D00B2BC07 /* orderSummaryCell.swift in Sources */,
 				94249E131F335C6600A5D223 /* mOrderingPreferencesViewController.swift in Sources */,
-				9438FCA71FC6000200D527BB /* SecondPaymentCell.swift in Sources */,
 				943F4B281F3C940300C140A4 /* OrderReview.swift in Sources */,
 				9435B0AA1F38D0C4005A199D /* LocationViewController.swift in Sources */,
 				943F4B771F43BFA800C140A4 /* mInfoViewController.swift in Sources */,
-				9454F2FC1F47D27900AB388B /* orderType.swift in Sources */,
+				F48ACB9B2033B47D00B2BC07 /* scheduleCalendar.swift in Sources */,
 				943F4B2A1F3C9C9300C140A4 /* Inventory.swift in Sources */,
-				9470ACAC1F4E653E00BCF979 /* CosmosDistrib.swift in Sources */,
 				F4A8CAAD1EDA1DAA00BDCEE9 /* SWRevealViewController.m in Sources */,
+				F48ACB8F2033B47D00B2BC07 /* laundryCell.swift in Sources */,
 				94AEBB921F3A5E4400AC63B4 /* OrderHistoryCell.swift in Sources */,
 				943F4B2C1F3C9E8900C140A4 /* OrderStatus.swift in Sources */,
-				9454F3161F47DE0E00AB388B /* dryCleaningCell.swift in Sources */,
 				94F85C0C1F0A9D6800E4B8A0 /* HomeAddress.swift in Sources */,
 				94D901681F1353C2001987B1 /* GenericCell.swift in Sources */,
+				F48ACB9F2033B47D00B2BC07 /* savedCreditCardCell.swift in Sources */,
+				F48ACB932033B47D00B2BC07 /* orderType.swift in Sources */,
 				943F4B221F3BEF2700C140A4 /* PromotionCell.swift in Sources */,
 				94249E1E1F336A6A00A5D223 /* CheckBoxCell.swift in Sources */,
 				9435B0AC1F395931005A199D /* FirstLastViewController.swift in Sources */,
 				941E850B1F510FA200DF99B1 /* AddLocationView.swift in Sources */,
 				943F4B7B1F43BFE700C140A4 /* mAuthPasswordViewController.swift in Sources */,
-				9454F2F61F47D22100AB388B /* orderSummaryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,7 +917,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "laundry-ios/laundry-ios.entitlements";
-				DEVELOPMENT_TEAM = GLS97SK2AU;
+				DEVELOPMENT_TEAM = 83CD5EHX7Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos/IQKeyboardManagerSwift",
@@ -934,7 +939,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "laundry-ios/laundry-ios.entitlements";
-				DEVELOPMENT_TEAM = GLS97SK2AU;
+				DEVELOPMENT_TEAM = 83CD5EHX7Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos/IQKeyboardManagerSwift",

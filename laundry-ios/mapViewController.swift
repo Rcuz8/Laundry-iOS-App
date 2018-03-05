@@ -20,8 +20,9 @@ protocol clearDataAfterLetsGetWashingGetsPressed {
     
     func clearInfo(expStanString: String)
     
-    
 }
+
+
 
 protocol scheduleScreenDelegate {
     func highlightInstant(high: Bool!)
@@ -44,7 +45,7 @@ protocol HandleMapSearch: class {
     func dropPinZoomIn(_ placemark:MKPlacemark)
 }
 
-class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITableViewDelegate, UITableViewDataSource, orderTypeDelegate, dryCleaningDelegate, laundryDelegate, specialPreferencesDelegate, orderSummaryDelegate, paymentDelegate, openCalendar, hide_Show_Button, straightToGetWashing, FSCalendarDataSource, FSCalendarDelegate, closed, MenuDisplay {
+class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITableViewDelegate, UITableViewDataSource, orderTypeDelegate, dryCleaningDelegate, laundryDelegate, specialPreferencesDelegate, orderSummaryDelegate, paymentDelegate, openCalendar, hide_Show_Button, straightToGetWashing, FSCalendarDataSource, FSCalendarDelegate, closed, MenuDisplay, selectPaymentPressed  {
     
     //saving data user defaults
     
@@ -147,7 +148,9 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     //   UserDefaults.standard.removeAll()
+        //   UserDefaults.standard.removeAll()
+        
+        
         
         
         
@@ -210,8 +213,31 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40.0)
         
         addMenu()
+        setupDefaults()
         
     }
+    
+    func setupDefaults(){
+        
+        
+        UserDefaults.standard.set(nil, forKey: "isLaundry")
+        UserDefaults.standard.set(" ", forKey: "StandardOrExpress")
+        
+        
+        UserDefaults.standard.set(0, forKey: "bagCount")
+        UserDefaults.standard.set(false, forKey: "checkedTermsOfOrdering")
+        UserDefaults.standard.set(1, forKey: "genderOptions")
+        UserDefaults.standard.set(0, forKey: "numShirts")
+        UserDefaults.standard.set(0, forKey: "numPants")
+        UserDefaults.standard.set(0, forKey: "numJackets")
+        UserDefaults.standard.set(0, forKey: "numSuits")
+        UserDefaults.standard.set(false, forKey: "checkedTermsOfOrdering")
+        
+        
+        
+    }
+    
+    
     
     func addMenu() {
         let x = partOfScreenWidth_d(percentage: 3)
@@ -247,7 +273,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         }
     }
     
-   
+    
     
     func addgetWashing() {
         getWashing = UIButton(type: UIButtonType.system)
@@ -266,7 +292,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     }
     
     func mapViewSettings(){
-
+        
         
         
         locationManager.delegate = self as! CLLocationManagerDelegate
@@ -283,7 +309,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         var searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for places"
-       // locationSearchTable.searchBar = searchBar
+        // locationSearchTable.searchBar = searchBar
         let font = UIFont(name: "AppleColorEmoji", size: 15)
         
         let searchBarY = CGFloat(partOfScreenHeight_f(percentage: 7))
@@ -294,13 +320,13 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         
         self.view.addSubview(searchBarPlaceHolder)
-    //    searchBar = themedSearchBar(searchBar: searchBar, mainColor: UIColor.lavoSlightlyDarkBlue, secondaryColor: UIColor.white)
-     //   searchBar.setTheme(mainColor: UIColor.lavoSlightlyDarkBlue, secondaryColor: UIColor.white)
+        //    searchBar = themedSearchBar(searchBar: searchBar, mainColor: UIColor.lavoSlightlyDarkBlue, secondaryColor: UIColor.white)
+        //   searchBar.setTheme(mainColor: UIColor.lavoSlightlyDarkBlue, secondaryColor: UIColor.white)
         searchBar.frame = CGRect(x: 0, y:0, width: searchBarPlaceHolder.frame.width, height: 42)
         
         definesPresentationContext = true
         
-      // BEGIN
+        // BEGIN
         
         searchBar.barTintColor = UIColor.white
         searchBar.layer.cornerRadius = 10
@@ -310,7 +336,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
         searchBar.layer.masksToBounds = true
         searchBar.clipsToBounds = true
-
+        
         
         
         searchBar.tintColor = UIColor.lavoSlightlyDarkBlue
@@ -335,8 +361,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
                 subView.tintColor = UIColor.white
             }
         }
-
-  //   END
+        
+        //   END
         
         // Replaced with:
         
@@ -413,13 +439,28 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
             cell.delegate = self
             
-            if let express = defaults.object(forKey: "isExpress") as? Bool {
-                if express {
+            if let express = defaults.object(forKey: "StandardOrExpress") as? String {
+                
+                print("Express: \(express)")
+                if express == "Express" {
                     cell.expressButton.layer.borderWidth = 2.0
                     cell.expressButton.layer.borderColor = UIColor.black.cgColor
-                } else {
+                    cell.expressButton.isSelected = true
+                    cell.standardButton.isSelected = false
+                    
+                }
+                
+                if express == "Standard"{
+                    
                     cell.standardButton.layer.borderWidth = 2.0
                     cell.standardButton.layer.borderColor = UIColor.black.cgColor
+                    cell.standardButton.isSelected = true
+                    cell.expressButton.isSelected = false
+                    
+                }
+                else if express == " "{
+                    cell.expressButton.isSelected = false
+                    cell.standardButton.isSelected = false
                 }
                 
             }
@@ -428,13 +469,18 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
                 if laundry {
                     cell.laundryCheckBox.isSelected = true
                     cell.laundryCheckBox.setBackgroundImage(UIImage(named: "ic_check_box"), for: .selected)
-                } else {
+                } else if !laundry{
                     cell.dryCleaningCheckBox.isSelected = true
                     cell.dryCleaningCheckBox.setBackgroundImage(UIImage(named: "ic_check_box"), for: .selected)
                 }
-
+                else{
+                    cell.laundryCheckBox.isSelected = false
+                    cell.dryCleaningCheckBox.isSelected = false
+                    
+                }
+                
             }
- 
+            
             return cell
             
         }
@@ -447,24 +493,30 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
             if let numShirts = defaults.object(forKey: "numShirts"), let numPants = defaults.object(forKey: "numPants"), let numSuits = defaults.object(forKey: "numSuits"), let numJackets = defaults.object(forKey: "numJackets") {
                 // set sliders
-                cell.shirtSlider.value = numShirts as! Float; cell.pantSlider.value = numPants as! Float;cell.suitSlider.value = numSuits as! Float; cell.jacketSlider.value = numJackets as! Float;
-                // set text
-                cell.shirtSliderValue.text = "\(numShirts)"
-                cell.pantSliderValue.text = "\(numPants)"
-                cell.suitSliderValue.text = "\(numSuits)"
-                cell.jacketSliderValue.text = "\(numJackets)"
+                
+                if(numPants as! Float != 0 && numSuits as! Float != 0 && numShirts as! Float != 0 && numJackets as! Float != 0){
+                    
+                    cell.shirtSlider.value = numShirts as! Float
+                    cell.pantSlider.value = numPants as! Float
+                    cell.suitSlider.value = numSuits as! Float
+                    cell.jacketSlider.value = numJackets as! Float
+                    // set text
+                    cell.shirtSliderValue.text = "\(numShirts as! Int)"
+                    cell.pantSliderValue.text = "\(numPants as! Int)"
+                    cell.suitSliderValue.text = "\(numSuits as! Int)"
+                    cell.jacketSliderValue.text = "\(numJackets as! Int)"
+                }
             }
-            
             if let options = defaults.object(forKey: "genderOptions") as? Int {
                 switch options {
-                    case 1:
-                        cell.optionsSegment.selectedSegmentIndex = 0
+                case 1:
+                    cell.optionsSegment.selectedSegmentIndex = 0
                     break
-                    case 2:
-                        cell.optionsSegment.selectedSegmentIndex = 1
+                case 2:
+                    cell.optionsSegment.selectedSegmentIndex = 1
                     break
-                    case 3:
-                        cell.optionsSegment.selectedSegmentIndex = 1
+                case 3:
+                    cell.optionsSegment.selectedSegmentIndex = 1
                     break
                 default:
                     cell.optionsSegment.selectedSegmentIndex = 0
@@ -506,12 +558,17 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             if let address = defaults.object(forKey: "address") as? String {
                 cell.addressLabel.text = address
             }
-
+            
             cell.addressLabel.layer.cornerRadius = 15
             if let checkedTerms = defaults.object(forKey: "checkedTermsOfOrdering") as? Bool {
+                
                 if checkedTerms {
+                    print("HEHEHE:\(checkedTerms)")
                     cell.termsCheckBox.isSelected = true
+                    cell.termsCheckBox.setBackgroundImage(UIImage(named: "ic_check_box"), for: .selected)
                 } else {
+                    cell.termsCheckBox.setBackgroundImage(UIImage(named:"ic_check_box_outline_blank_black_24dp_2x" ) , for: .normal)
+                    print("HEHEHE:\(checkedTerms)")
                     cell.termsCheckBox.isSelected = false
                 }
             }
@@ -529,8 +586,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             
             if let onDemand = defaults.object(forKey: "isOnDemand") as? Bool {
                 if onDemand {
-                cell.instantBtn.layer.borderWidth = 2.0
-                cell.instantBtn.layer.borderColor = UIColor.black.cgColor
+                    cell.instantBtn.layer.borderWidth = 2.0
+                    cell.instantBtn.layer.borderColor = UIColor.black.cgColor
                 }
             }
             
@@ -541,19 +598,30 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         else{
             
             if let cell = Bundle.main.loadNibNamed("SecondPaymentCell", owner: self, options: nil)?.first as? SecondPaymentCell {
-           //     print("found second payment cell")
+                //     print("found second payment cell")
                 cell.delegate = self
+                cell.delegate3 = self
+                
+                cell.hostViewController = self
                 
                 return cell
-            }else if let cell = Bundle.main.loadNibNamed("SecondPaymentCell", owner: self, options: nil)?.first {
-        //        print("found a cell")
+                
+            }
+            else if let cell = Bundle.main.loadNibNamed("SecondPaymentCell", owner: self, options: nil)?.first {
+                //        print("found a cell")
                 let cell = SecondPaymentCell()
                 cell.delegate = self
+                cell.delegate3 = self
+                cell.hostViewController = self
+                
                 return cell
-            } else {
+            }
+            else {
                 print("could not find second payment cell")
                 let cell = SecondPaymentCell()
                 cell.delegate = self
+                cell.delegate3 = self
+                cell.hostViewController = self
                 return cell
             }
             
@@ -836,7 +904,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             self.tableView.isHidden = true
             
         }
-
+        
     }
     
     func orderSummaryNextClicked(cell: orderSummaryCell) {
@@ -857,7 +925,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
-    // ------------------------ Order -------------------------- //
+    // ---------------------- Order ---------------------------- -------------------------- //
     func OrderPressed(cell: SecondPaymentCell) {
         
         UIView.animate(withDuration: 0.3) {
@@ -866,7 +934,34 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
             self.feedbackView.isHidden = false
             
         }
+        
+        //make all the user default values default so the order can restart
+        
+        
+        
+        setupDefaults()
+        
+        
+        
+    }
     
+    func showPayment(button: UIButton) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "pay")
+        
+        self.present(vc!, animated: true, completion: nil)
+        
+        
+        
+    }
+    
+    
+    
+    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+        
+        
+        
+        
     }
     
     @IBOutlet weak var calendar: FSCalendar!
@@ -952,8 +1047,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         resultSearchController.dismiss(animated: true, completion: nil)
         
         let def = UserDefaults.standard
-     //   def.removeAll() --> NOT YET
-
+        //   def.removeAll() --> NOT YET
+        
         feedbackView.isHidden = true
         reportIssueView.isHidden = true
         
@@ -1036,6 +1131,8 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     
     func cancelOrderScheme() {
         
+        setupDefaults()
+        
         self.tableView.isHidden = true
         self.overlayBlur.removeFromSuperview()
         
@@ -1045,6 +1142,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         self.view.viewWithTag(100)?.isHidden = false
         self.menuB.isHidden = false
         self.searchBarPlaceHolder.isHidden = false
+        
         
         
         
@@ -1156,6 +1254,15 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         
     }
     
+    
+    func paymentMethodsPressed(cell: SecondPaymentCell) {
+        
+        cell.paymentContext.hostViewController = self
+        
+        
+        
+    }
+    
     func show() {
         self.getWashing.isHidden = false
         
@@ -1171,7 +1278,7 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
         resultSearchController.searchBar.text = addy
         LetsGetWashingActionCode()
     }
- 
+    
     func addToCalendar(date: Date) {
         
         let formatter = DateFormatter()
@@ -1216,14 +1323,14 @@ class mapViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "s"){
-       
+            
             let destVC : schedulePickerViewController = segue.destination as! schedulePickerViewController
             destVC.delegate = self
             
         }
-
+        
     }
-
+    
     func themedSearchBar(searchBar bar: UISearchBar, mainColor: UIColor, secondaryColor: UIColor) -> UISearchBar {
         var searchBar = bar
         searchBar.barTintColor = secondaryColor //s
@@ -1429,37 +1536,37 @@ extension UISearchBar
         glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
         glassIconView?.tintColor = color
     }
-
-//    func setTheme(mainColor: UIColor, secondaryColor: UIColor) {
-//        self.barTintColor = secondaryColor //s
-//        self.layer.cornerRadius = 10
-//        self.layer.borderWidth = 1.0
-//        self.layer.borderColor = UIColor.black.cgColor // idk
-//        var selfTextField = self.value(forKey: "searchField") as? UITextField
-//        self.layer.masksToBounds = true
-//        self.clipsToBounds = true
-//        self.tintColor = mainColor //m
-//        self.barTintColor = mainColor //m
-//        self.layer.borderColor = mainColor.cgColor //m
-//        
-////        selfTextField?.textColor = secondaryColor //s
-////        selfTextField?.backgroundColor = mainColor //m
-////        let font = UIFont(name: "AppleColorEmoji", size: 15)
-////        selfTextField?.font = font
-////        self.setMagnifyingGlassColorTo(color: secondaryColor) //s
-////        self.setTextColor(color: secondaryColor) //s
-////        self.setPlaceholderTextColorTo(color: secondaryColor) //s
-////        
-////        let v: UIView = self.subviews[0] as UIView
-////        let subViewsArray = v.subviews
-////        
-////        for subView: UIView in subViewsArray {
-////            if subView.isKind(of: UITextField.self) {
-////                subView.tintColor = secondaryColor //s
-////            }
-////        }
-
-        
+    
+    //    func setTheme(mainColor: UIColor, secondaryColor: UIColor) {
+    //        self.barTintColor = secondaryColor //s
+    //        self.layer.cornerRadius = 10
+    //        self.layer.borderWidth = 1.0
+    //        self.layer.borderColor = UIColor.black.cgColor // idk
+    //        var selfTextField = self.value(forKey: "searchField") as? UITextField
+    //        self.layer.masksToBounds = true
+    //        self.clipsToBounds = true
+    //        self.tintColor = mainColor //m
+    //        self.barTintColor = mainColor //m
+    //        self.layer.borderColor = mainColor.cgColor //m
+    //
+    ////        selfTextField?.textColor = secondaryColor //s
+    ////        selfTextField?.backgroundColor = mainColor //m
+    ////        let font = UIFont(name: "AppleColorEmoji", size: 15)
+    ////        selfTextField?.font = font
+    ////        self.setMagnifyingGlassColorTo(color: secondaryColor) //s
+    ////        self.setTextColor(color: secondaryColor) //s
+    ////        self.setPlaceholderTextColorTo(color: secondaryColor) //s
+    ////
+    ////        let v: UIView = self.subviews[0] as UIView
+    ////        let subViewsArray = v.subviews
+    ////        
+    ////        for subView: UIView in subViewsArray {
+    ////            if subView.isKind(of: UITextField.self) {
+    ////                subView.tintColor = secondaryColor //s
+    ////            }
+    ////        }
+    
+    
     
     
 }

@@ -64,7 +64,12 @@ class MainAPI:NSObject, STPEphemeralKeyProvider {
                 if let customerId = customerIdOpt {
                     request(id: customerId)
                 } else {
-                    print("Couldn't find id")
+                    
+                    API.postNewCustomer(email: "anaghtelluri@gmail.com")
+                    
+                    
+                    
+                    //print("Couldn't find id")
                 }
             })
             

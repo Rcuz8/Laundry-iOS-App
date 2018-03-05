@@ -28,8 +28,6 @@ PODS:
     - FBSDKCoreKit
   - Firebase (3.17.0):
     - Firebase/Core (= 3.17.0)
-  - Firebase/Analytics (3.17.0):
-    - Firebase/Core
   - Firebase/Auth (3.17.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
@@ -120,11 +118,9 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - Firebase
-  - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
-  - FirebaseAnalytics
   - FSCalendar
   - Google/SignIn
   - GoogleMaps
@@ -173,6 +169,6 @@ SPEC CHECKSUMS:
   Stripe: 3c86dc18af21e59dd559aa15e83cb501248f9903
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: f2a9947e83115dac71d0f338c4e84bae5a0e7b37
+PODFILE CHECKSUM: 51f256772462a5af26ec789cece80f428e3074eb
 
 COCOAPODS: 1.2.1

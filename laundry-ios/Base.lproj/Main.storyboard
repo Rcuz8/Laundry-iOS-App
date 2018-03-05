@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WBr-5l-fLE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WBr-5l-fLE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -841,11 +841,30 @@
                         <outlet property="reportIssueTextView" destination="1SX-cX-CKO" id="xkb-gV-CMJ"/>
                         <outlet property="reportIssueView" destination="VF2-Mt-WFQ" id="g4Z-jb-2eP"/>
                         <outlet property="scheduledButton" destination="35b-XQ-j4K" id="0Le-d2-WC6"/>
+                        <segue destination="fst-ew-ZAd" kind="show" identifier="HOHO" id="LP6-C3-ipB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ah1-3x-8pM" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4425" y="-816"/>
+        </scene>
+        <!--Payment View Controller-->
+        <scene sceneID="aBX-u0-1dI">
+            <objects>
+                <viewController storyboardIdentifier="pay" id="fst-ew-ZAd" customClass="PaymentViewController" customModule="laundry_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1pg-MP-7cy"/>
+                        <viewControllerLayoutGuide type="bottom" id="hVj-tv-2I1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XAU-Sl-caL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HB5-A4-YzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5193" y="-707"/>
         </scene>
         <!--Schedule Picker View Controller-->
         <scene sceneID="dxC-i3-HVM">
@@ -1059,7 +1078,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSl-ar-7wU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5880.8000000000002" y="-838.83058470764627"/>
+            <point key="canvasLocation" x="5175" y="-1450"/>
         </scene>
         <!--Slide Menu-->
         <scene sceneID="02p-az-AQA">

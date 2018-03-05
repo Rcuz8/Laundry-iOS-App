@@ -38,6 +38,7 @@ struct API {
 }
 
 
+
 struct Constants {
     static let STRIPE_KEY = "pk_test_lg4KhXtxw5kCceuSCGEz2k8M"
     static let BASE_URL = "http://localhost:1337" //"https://api.myapp.com" // Heroku Generated Link that
@@ -89,8 +90,7 @@ struct Network {
      - parameter url: The API endpoint.
      - parameter parameters: The request parmeters.
      - returns: A Promise with the formatted JSON response.
-     
-     */
+    */
     static func post(url:String,parameters:Parameters?=nil) -> Promise<Dictionary<String,Any>> {
             print("posting stuff . . .")
         return Promise {fulfill, reject in
