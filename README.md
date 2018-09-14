@@ -1,4 +1,4 @@
-# Laundry-iOS-App
+# Laundry iOS App
 iOS App designed to create a better laundry experience.
 
 This application, designed as an on-demand laundry pickup & drop-off application, was the primary product of Lavo Logistics Inc. ( where I led Developer Operations) until the company eventually folded, and it is now available for open-source use as it encompasses a lot of incredible functionality.
